@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Throughline — Pivot into an AI-era career, without starting over</title>
+<meta name="description" content="Throughline helps experienced professionals pivot out of an AI-threatened or dead-end career and into a future-proof one for 2026 — using the experience you already have, without going back to entry level." />
+
+<meta property="og:title" content="Throughline — Pivot into an AI-era career, without starting over" />
+<meta property="og:description" content="For experienced professionals who can feel the floor moving. Reposition your 15 years into a career that matters in 2026 — without the pay cut or the do-over." />
+<meta property="og:type" content="website" />
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..560&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- the throughline rail: fills dusk→dawn as you scroll -->
+<div class="rail" aria-hidden="true">
+  <div class="rail-track"></div>
+  <div class="rail-fill" id="railFill"></div>
+</div>
+
+<!-- ============================================= NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" aria-label="Throughline home">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M3 24 C 11 24, 12 8, 20 8 C 26 8, 28 14, 29 18" stroke="url(#g)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="3" cy="24" r="3" fill="#6f8a98"/>
+        <circle cx="29" cy="18" r="3.4" fill="#d97746"/>
+        <defs><linearGradient id="g" x1="3" y1="24" x2="29" y2="10" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#6f8a98"/><stop offset="1" stop-color="#e6a24a"/>
+        </linearGradient></defs>
+      </svg>
+      Throughline
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#method">How it works</a>
+      <a href="#roles">2026 careers</a>
+      <a href="#fit">Is it for me?</a>
+      <a href="#offer">The program</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#assessment" class="btn btn-ghost">Take the 2-min check</a>
+      <a href="#book" class="btn btn-primary">Book a pivot call <span class="arrow">→</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================================= HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">Career change for the AI era</span>
+      <h1>You're not too old to change careers. You're <em>too experienced</em> to waste it where you are.</h1>
+      <p class="lead">If you can feel the floor moving under your industry, you're not wrong. Throughline helps experienced professionals pivot into the careers that matter in 2026 — using the 15 years you already have, without the pay cut or the crawl back to entry level.</p>
+      <div class="hero-actions">
+        <a href="#book" class="btn btn-primary btn-lg">Book my free pivot call <span class="arrow">→</span></a>
+        <a href="#assessment" class="btn btn-ghost btn-lg">Is my career AI-proof?</a>
+      </div>
+      <p class="hero-reassure">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Free 30-minute call. No pitch, no pressure — just a clear read on your best move.
+      </p>
+    </div>
+
+    <div class="hero-visual reveal">
+      <svg class="hero-thread" viewBox="0 0 300 380" preserveAspectRatio="none" aria-hidden="true">
+        <path id="heroPath" d="M40 50 C 120 90, 60 200, 160 230 C 240 254, 210 320, 260 340"
+              fill="none" stroke="url(#heroGrad)" stroke-width="2.5" stroke-linecap="round"/>
+        <defs><linearGradient id="heroGrad" x1="40" y1="50" x2="260" y2="340" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#6f8a98"/><stop offset="0.6" stop-color="#e6a24a"/><stop offset="1" stop-color="#d97746"/>
+        </linearGradient></defs>
+      </svg>
+      <div class="hero-card from">
+        <span class="meta">Where you are</span>
+        <span class="role">Operations Manager</span>
+        <span class="tag">"I can feel my role being hollowed out, one task at a time."</span>
+      </div>
+      <div class="hero-card to">
+        <span class="meta">Where you're going</span>
+        <span class="role">AI Adoption Strategist</span>
+        <span class="tag">Same experience. Pointed at what's next.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- trust strip — honest, no fabricated reviews -->
+<section class="trust">
+  <div class="wrap">
+    <span class="label">Built for the pivot — not the job board</span>
+    <ul>
+      <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ICF-credentialed coaches</li>
+      <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> AI-era role specialists</li>
+      <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Research-backed method</li>
+      <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 1:1, not a directory</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================= PROBLEM / VILLAIN -->
+<section class="section problem" id="problem">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The quiet part out loud</span>
+      <h2>You've spent years building expertise. Now you wonder if it still counts.</h2>
+    </div>
+    <div class="mirror">
+      <blockquote class="reveal"><span class="q">“</span>I'm good at this — but I can't keep doing it, and I can feel my industry shrinking around me.”</blockquote>
+      <blockquote class="reveal"><span class="q">“</span>I make good money and I'm miserable. I want out, but starting at the bottom at 47 isn't an option.”</blockquote>
+      <blockquote class="reveal"><span class="q">“</span>Every job board feels like it was written for 25-year-olds who already know the new tools.”</blockquote>
+    </div>
+    <p class="villain reveal">Here's the truth most coaches won't tell you: <strong>AI isn't the enemy. The slow slide is.</strong> It's the comfortable denial that keeps a capable professional in a role being quietly automated — "I've got a few more good years" — until the day the spreadsheet decides otherwise. The people who move <em>while it's still their choice</em> get hired as experienced pioneers. The ones who wait compete in a flooded pool against everyone else who waited.</p>
+  </div>
+</section>
+
+<!-- ============================================= REFRAME -->
+<section class="section reframe" id="reframe">
+  <div class="wrap reframe-grid">
+    <div class="reveal">
+      <span class="eyebrow">The reframe</span>
+      <p class="big">This isn't starting over. It's <em>repositioning</em> what you already built.</p>
+      <p class="lead" style="margin-top:1.4rem">Your 10, 15, 20 years of judgment, relationships, and pattern-recognition can't be replicated by a 24-year-old — or by an AI. The work isn't to throw it away. It's to redeploy it where the 2026 market is desperate for it.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal"><span class="n">01</span><div><h3>Transferable skill mapping</h3><p>We find the 6–8 skills you already have that the AI-era market is paying for. Most people are sitting on three and don't know it.</p></div></div>
+      <div class="pillar reveal"><span class="n">02</span><div><h3>AI-era role targeting</h3><p>We aim you at roles that are growing <em>because</em> of AI — where human judgment, trust, and accountability are the product — not the ones being replaced.</p></div></div>
+      <div class="pillar reveal"><span class="n">03</span><div><h3>A guided pivot plan</h3><p>A coach and a system, not a directory you have to figure out alone at midnight. One clear next step at a time.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= METHOD (PIVOT) -->
+<section class="section method" id="method">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The method</span>
+      <h2>The PIVOT Method™</h2>
+      <p>You don't think your way into a new career — you act your way into one. Our framework is built on identity research and a simple principle: reinvention isn't a leap, it's a series of small, smart, reversible experiments that compound into a new direction.</p>
+    </div>
+    <div class="phases">
+      <div class="phase reveal"><div class="node"><span class="letter">P</span></div><div><h3>Profile <span>— map who you are now</span></h3><p>Audit your real assets: transferable skills, domain expertise, values, financial runway. We separate your identity from your job title, so losing the title never feels like losing yourself.</p></div></div>
+      <div class="phase reveal"><div class="node"><span class="letter">I</span></div><div><h3>Identify <span>— find the viable pivots</span></h3><p>We don't chase one fantasy job. We generate a portfolio of 3–5 plausible target careers, scored on fit, 2026 demand, AI-resilience, and how close they are to your current skills.</p></div></div>
+      <div class="phase reveal"><div class="node"><span class="letter">V</span></div><div><h3>Validate <span>— test before you leap</span></h3><p>Small, real-world experiments: informational interviews, a side project, a short course, a freelance gig. You gather evidence instead of guessing. Most fears shrink the moment they meet reality.</p></div></div>
+      <div class="phase reveal"><div class="node"><span class="letter">O</span></div><div><h3>Operationalize <span>— build the bridge</span></h3><p>The de-risking plan: timeline, income runway, the skills to acquire (including the AI fluency your target role needs), and a reframed résumé and narrative. "Someday" becomes a dated plan.</p></div></div>
+      <div class="phase reveal"><div class="node"><span class="letter">T</span></div><div><h3>Transition <span>— make the move and land it</span></h3><p>We position your story so a hiring manager sees a 15-year asset, not a beginner. Interview strategy, salary negotiation, and a first-90-days plan so the new role actually sticks.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= ROLES -->
+<section class="section roles" id="roles">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Where people pivot to</span>
+      <h2>The careers that matter in 2026 — and that your experience can reach</h2>
+      <p>We steer toward roles that are growing through 2026 and beyond, are AI-resilient or AI-leveraging, and are reachable from where you are now — no four-year restart required.</p>
+    </div>
+    <div class="roles-grid">
+      <div class="role-group reveal">
+        <h3><span class="dot" style="background:#d97746"></span>Work <em>with</em> AI</h3>
+        <p class="why">Hard to automate, and rewards domain experience over coding.</p>
+        <ul>
+          <li>AI Governance, Risk &amp; Compliance Specialist</li>
+          <li>AI Adoption &amp; Workflow Strategist</li>
+          <li>AI Systems / Prompt Designer</li>
+          <li>Conversation &amp; UX Content Designer</li>
+        </ul>
+      </div>
+      <div class="role-group reveal">
+        <h3><span class="dot" style="background:#4c9a6a"></span>Human-centered</h3>
+        <p class="why">Roles AI can't replace — judgment, care, and people are the work.</p>
+        <ul>
+          <li>Learning &amp; Development / L&amp;X Designer</li>
+          <li>Cybersecurity &amp; Trust / Safety (GRC)</li>
+          <li>People, Talent &amp; Org Development</li>
+          <li>Healthcare-adjacent &amp; care coordination</li>
+        </ul>
+      </div>
+      <div class="role-group reveal">
+        <h3><span class="dot" style="background:#6f8a98"></span>Future economy</h3>
+        <p class="why">Long build-outs and mission-driven work that reward operators.</p>
+        <ul>
+          <li>Sustainability / ESG &amp; Climate Programs</li>
+          <li>Renewable Energy &amp; Grid Project Management</li>
+          <li>Applied Data &amp; Business Analytics</li>
+          <li>Clinical-tech &amp; health operations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= STORIES -->
+<section class="section stories" id="stories">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What a pivot looks like</span>
+      <h2>The best moves are adjacent: keep 70% of your skills, change the context</h2>
+    </div>
+    <div class="stories-grid">
+      <div class="story reveal"><div class="path">Paralegal <span class="sep">→</span> <span class="to">AI Compliance Specialist</span></div><p>16 years in legal support, afraid document review was being automated away. Reframed her legal knowledge as the human judgment layer over AI legal tools.</p><div class="who">Composite client · Maria, 44</div></div>
+      <div class="story reveal"><div class="path">Print Journalist <span class="sep">→</span> <span class="to">UX / Conversation Designer</span></div><p>A decade of newsroom shrinkage. His core craft — clarity and narrative — translated directly into designing how AI assistants and apps "talk." Closer than he thought.</p><div class="who">Composite client · David, 49</div></div>
+      <div class="story reveal"><div class="path">Teacher <span class="sep">→</span> <span class="to">Learning Experience Designer</span></div><p>Burned out on the classroom but didn't want to leave education. Now designs corporate upskilling and AI-adoption training — better pay, same craft, growing field.</p><div class="who">Composite client · Priya, 38</div></div>
+      <div class="story reveal"><div class="path">Marketing Manager <span class="sep">→</span> <span class="to">AI Workflow Strategist</span></div><p>Didn't leave marketing — leapt ahead of it. Became the person who redesigns the team's workflow around AI tools. The adjacent pivot that protected her income.</p><div class="who">Composite client · Lena, 41</div></div>
+    </div>
+    <p class="disclaimer">Illustrative composite examples of the pivots our method is built for — not testimonials. As a founding-cohort program, we'd rather show you the work than borrow someone else's quote.</p>
+  </div>
+</section>
+
+<!-- ============================================= FIT -->
+<section class="section fit" id="fit">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Honest fit</span>
+      <h2>Who this is for — and who it isn't</h2>
+      <p>We do one thing: mid-career pivots into AI-era roles. That focus is the whole value, so we're upfront about who it serves.</p>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-col yes reveal">
+        <h3><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> This is for you if…</h3>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> You have 10+ years of experience and too much built to throw it away.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> You want a real pivot, not another résumé tweak.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> You can't take a pay cut — and you're done pretending the slide isn't happening.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> You'll do the work — an hour at a time, on nights and weekends.</li>
+        </ul>
+      </div>
+      <div class="fit-col no reveal">
+        <h3><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> This isn't for you if…</h3>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> You want a free job board or a directory of links.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> You're happy in your lane and just want to climb the existing ladder.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> You're looking for a "manifest your dream life" personality quiz.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> You want someone to do it for you while you stay on the sidelines.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= COMPARE -->
+<section class="section compare-sec" id="compare">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why not the alternatives</span>
+      <h2>The market is split into two extremes. We built the missing middle.</h2>
+      <p>Low-touch marketplaces leave you to vet everyone yourself. Executive placement firms only optimize the career you're trying to leave. Neither is built for the pivot.</p>
+    </div>
+    <div class="compare-wrap reveal">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col" class="us">Throughline</th>
+            <th scope="col">Coaching marketplaces</th>
+            <th scope="col">Executive placement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Built for career <em>changers</em></th><td class="us"><span class="tick">●</span> Only this</td><td>Sometimes</td><td><span class="cross">○</span> No — same field</td></tr>
+          <tr><th scope="row">AI-era 2026 role focus</th><td class="us"><span class="tick">●</span> Core</td><td><span class="cross">○</span> Generic</td><td><span class="cross">○</span> Generic</td></tr>
+          <tr><th scope="row">Leverages your experience</th><td class="us"><span class="tick">●</span> The whole point</td><td>Varies by coach</td><td><span class="tick">●</span> Yes</td></tr>
+          <tr><th scope="row">A guided plan, not a directory</th><td class="us"><span class="tick">●</span> 1:1 + system</td><td><span class="cross">○</span> You self-serve</td><td><span class="tick">●</span> Yes</td></tr>
+          <tr><th scope="row">Accessible without six figures</th><td class="us"><span class="tick">●</span> Founding rate</td><td><span class="tick">●</span> Yes</td><td><span class="cross">○</span> $2.5k–$6k+</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= OFFER + GUARANTEE -->
+<section class="section offer" id="offer">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The program</span>
+      <h2>The 2026 Career Pivot Program</h2>
+      <p>1:1 coaching with a pivot specialist, plus the system that turns "I have to get out" into a dated plan with an offer letter at the end of it.</p>
+    </div>
+    <div class="offer-grid">
+      <div class="reveal">
+        <ul class="includes">
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>1:1 coaching</strong> with a specialist who has actually worked in your target field.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>Your personalized <strong>12-week Pivot Roadmap</strong> — so you always know the single next move.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>The <strong>Transferable Asset Audit</strong> + Future-Proof Role Match report.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>A <strong>repositioned résumé, LinkedIn, and "senior-hire" narrative</strong>, done with you.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>The <strong>Salary-Bridge Negotiation Playbook</strong> — pivot at your income or higher.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>A <strong>private community</strong> of mid-career pivoters. You are not doing this alone.</span></li>
+        </ul>
+        <p class="founding"><strong>Founding cohort:</strong> we onboard a limited number of 1:1 clients per coach each month so the coaching stays real — at founding-member pricing. Pricing is shared on your call, once we know your pivot is one we can actually help with.</p>
+      </div>
+      <aside class="guarantee reveal">
+        <span class="seal">Risk reversal</span>
+        <h3>The Clear-Path Guarantee</h3>
+        <p>Complete your first 30 days — show up, do the work — and if you don't walk away with a concrete pivot plan and at least three real target roles that fit your experience and your income floor, we refund every dollar and you keep the roadmap.</p>
+        <p>The only way to lose here is to keep doing nothing.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= FAQ -->
+<section class="section faq" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Straight answers</span>
+      <h2>The questions you're already asking</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item"><summary class="faq-q">Aren't I too old to change careers?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">No — you're too experienced to start over, which is different. The fear of "missing the window" assumes you'd begin from zero. You wouldn't. People change careers in their 40s and 50s successfully every day. What stops most isn't age — it's not having a credible plan and trying to do it alone at midnight. That's the part we fix.</div></details>
+      <details class="faq-item"><summary class="faq-q">I can't afford a pay cut. Doesn't a pivot mean less money?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">That's exactly why the program exists. The whole strategy is engineered around the salary bridge — moving careers at your current income or higher by negotiating from experience, not desperation. If a pay cut were the only path, you wouldn't need us.</div></details>
+      <details class="faq-item"><summary class="faq-q">I already work 50 hours a week. Where's the time?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">The roadmap runs on nights and weekends, an hour at a time — without quitting your job or tipping off your employer. You don't have to find time for everything. We hand you the single next step, so you never waste an hour on the wrong move.</div></details>
+      <details class="faq-item"><summary class="faq-q">How do I know AI won't just take the new job too?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">Because we don't guess. We match you to roles that are growing because of AI — where human judgment, relationships, and accountability are the product — not roles in line to be replaced. We show you the reasoning before you commit to a direction.</div></details>
+      <details class="faq-item"><summary class="faq-q">Do I need to be technical or learn to code?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">No. Most of the highest-demand AI-era roles reward judgment, communication, and domain expertise — not coding. We'll map exactly the level of AI fluency your specific target role needs, and build it into your plan.</div></details>
+      <details class="faq-item"><summary class="faq-q">I've tried career stuff before and nothing changed.<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">Most of it is generic advice and personality quizzes aimed at confused 22-year-olds. This is a 1:1 plan built around your experience, your income floor, and a specific target role, with a coach who has worked in that field. Not inspiration — a map.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= FINAL CTA -->
+<section class="section final" id="book">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap final-inner reveal">
+    <span class="eyebrow" style="justify-content:center">The second-best time is now</span>
+    <h2>The best time to switch was before you were worried. The second-best time is <em>while it's still your decision.</em></h2>
+    <p>Book a free 30-minute pivot call. We'll give you an honest read on your best move — and tell you plainly if we're not the right fit.</p>
+    <div class="hero-actions">
+      <a href="mailto:hello@throughline.coach?subject=Book%20my%20pivot%20call" class="btn btn-primary btn-lg">Book my free pivot call <span class="arrow">→</span></a>
+      <a href="#assessment" class="btn btn-ghost btn-lg on-dark">Take the 2-min AI-proof check</a>
+    </div>
+    <p class="final-reassure">No pitch, no pressure. Just clarity on where your experience can take you next.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================= FOOTER -->
+<footer class="footer" id="assessment">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="brand">
+          <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M3 24 C 11 24, 12 8, 20 8 C 26 8, 28 14, 29 18" stroke="url(#g2)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="3" cy="24" r="3" fill="#6f8a98"/><circle cx="29" cy="18" r="3.4" fill="#d97746"/>
+            <defs><linearGradient id="g2" x1="3" y1="24" x2="29" y2="10" gradientUnits="userSpaceOnUse"><stop stop-color="#6f8a98"/><stop offset="1" stop-color="#e6a24a"/></linearGradient></defs>
+          </svg>
+          Throughline
+        </a>
+        <p class="footer-tagline">Your experience is the asset. We point it at what's next.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#method">How it works</a></li>
+            <li><a href="#roles">2026 careers</a></li>
+            <li><a href="#fit">Is it for me?</a></li>
+            <li><a href="#offer">The program</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get started</h4>
+          <ul>
+            <li><a href="#book">Book a pivot call</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="mailto:hello@throughline.coach">hello@throughline.coach</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Throughline. A career-pivot coaching studio for the AI era.</span>
+      <span>Built for career changers, not job boards.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
