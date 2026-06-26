@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Illustrated coach portrait placeholder">
+  <rect width="200" height="200" fill="#ece4d9"/>
+  <!-- shoulders / clothing -->
+  <path d="M40 200 C40 158 66 142 100 142 C134 142 160 158 160 200 Z" fill="#7a3f2e"/>
+  <path d="M86 138 h28 v16 c0 8 -28 8 -28 0 Z" fill="#a86a40"/>
+  <!-- head -->
+  <ellipse cx="100" cy="104" rx="34" ry="38" fill="#a86a40"/>
+  <!-- ears -->
+  <circle cx="65" cy="106" r="7" fill="#a86a40"/><circle cx="135" cy="106" r="7" fill="#a86a40"/>
+  <circle cx="100" cy="55" r="11" fill="#161210"/><path d="M60 100 C60 60, 140 60, 140 100 C140 80 128 66 100 66 C72 66 60 80 60 100 Z" fill="#161210"/>
+</svg>

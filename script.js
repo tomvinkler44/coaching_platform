@@ -62,6 +62,40 @@
     } catch (err) { /* getTotalLength can throw if not yet rendered; harmless */ }
   }
 
+  /* coach roster filtering */
+  var filters = document.getElementById("coachFilters");
+  var grid = document.getElementById("coachGrid");
+  var emptyNote = document.getElementById("coachEmpty");
+  if (filters && grid) {
+    var cards = Array.prototype.slice.call(grid.querySelectorAll(".coach"));
+    var chips = Array.prototype.slice.call(filters.querySelectorAll(".chip"));
+
+    function applyFilter(val) {
+      var shown = 0;
+      cards.forEach(function (card) {
+        var cats = (card.getAttribute("data-cats") || "").split(/\s+/);
+        var match = val === "all" || cats.indexOf(val) !== -1;
+        card.hidden = !match;
+        if (match) shown++;
+      });
+      if (emptyNote) emptyNote.hidden = shown !== 0;
+      chips.forEach(function (c) {
+        var on = c.getAttribute("data-filter") === val;
+        c.classList.toggle("active", on);
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    filters.addEventListener("click", function (e) {
+      var chip = e.target.closest(".chip");
+      if (!chip) return;
+      applyFilter(chip.getAttribute("data-filter"));
+    });
+
+    var reset = document.querySelector("[data-filter-reset]");
+    if (reset) reset.addEventListener("click", function (e) { e.preventDefault(); applyFilter("all"); });
+  }
+
   /* smooth-scroll for same-page anchors, accounting for the sticky nav */
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener("click", function (ev) {

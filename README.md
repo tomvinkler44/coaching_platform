@@ -1,31 +1,48 @@
 # Throughline — marketing site
 
-The public marketing site for a career-coaching portal. It is the first page
-prospects find. Niche: **career changers** pivoting into the careers that
-matter in **2026**, with a specialty in roles reshaped by **AI / automation**.
+The public marketing site for a career-coaching **marketplace**. It is the first
+page prospects find. It does two jobs:
+
+1. Tells visitors this site is about **changing careers** — pivoting into a
+   different field, with a specialty in the AI-era roles that matter for **2026**.
+2. Tells them it's where they **find the best coach for their situation** — a
+   curated roster of coaches who have *"been there, done that"* (each has made a
+   major career change themselves), matched to the visitor's background and goals.
 
 > "Throughline" is a working brand name (it means *your experience is the thread
-> carried into the new career*). It's easy to swap — see **Renaming the brand**
-> below.
+> carried into the new career*). It's easy to swap — see **Renaming the brand**.
 
 ## Positioning
 
 > For experienced professionals (10–20 yrs) who feel stuck or quietly threatened
-> by AI and want a real pivot but fear starting over, **Throughline** is the
-> AI-era career-change coaching program that maps your existing experience onto
-> the roles that matter in 2026 and walks you through the switch — unlike generic
-> coaching marketplaces (you self-serve) or executive placement firms (they only
-> optimize the career you're leaving).
+> by AI and want a real pivot, **Throughline** is the coaching **marketplace**
+> that matches you with vetted coaches who have personally changed careers into
+> AI-era 2026 roles — unlike generic coaching directories (hundreds of profiles
+> you vet yourself) or executive placement firms (they only optimize the career
+> you're leaving).
 
 Core message: **this isn't starting over — it's repositioning what you already
-built.** The enemy is *the slow slide* (waiting until you're forced to move).
+built, with a guide who's already walked the path.** The enemy is *the slow
+slide* (waiting until you're forced to move).
 
-The copy was developed with a simulated expert panel: **Dan Kennedy**
-(direct-response: headline, USP, villain, risk reversal, honest urgency),
-two **career-change coaches** in the lineage of Herminia Ibarra's *Working
-Identity* (the PIVOT method, voice-of-customer, before/after, 2026 roles), and
-an **April Dunford-style positioning + CRO strategist** (page structure, name,
-trust-without-testimonials, CTA strategy).
+The competitor scan in the source doc (IGotAnOffer, The Muse, Career Contessa,
+Noomii, etc.) shaped the marketplace cues used here: hand-vetted/curated coaches,
+coach profiles with real industry background, a **free intro / chemistry call**,
+filter-by-your-situation, and "choose a coach who's actually done it."
+
+Copy was developed with a simulated expert panel: **Dan Kennedy** (headline,
+villain, risk reversal, honest urgency), two **career-change coaches** (Herminia
+Ibarra lineage — the transition framing, voice-of-customer, 2026 roles), and an
+**April Dunford-style positioning + CRO strategist** (page structure, the name,
+trust-without-fabrication).
+
+## Page structure
+
+Nav · Hero (title + "where you are → where you're going" graphic) · trust strip ·
+problem / "the slow slide" · why a specialist coach · **How it works** (3 steps) ·
+**Coaches** (filterable roster of 8) · 2026 careers · who it's for/not for ·
+comparison vs alternatives · what it costs + Right-Fit Guarantee · "Are you a
+coach?" band · FAQ · final CTA · footer.
 
 ## Tech
 
@@ -33,55 +50,60 @@ Self-contained static site. No build step, no dependencies.
 
 - `index.html` — the homepage (all sections)
 - `styles.css` — hand-authored design system (no framework)
-- `script.js` — scroll reveals, the throughline scroll rail, hero thread draw
+- `script.js` — scroll reveals, the throughline scroll rail, hero thread draw,
+  and the **coach roster filtering**
 - `assets/favicon.svg`
+- `assets/coaches/coach-1.svg … coach-8.svg` — placeholder coach portraits
 
 Fonts load from Google Fonts (Fraunces / Hanken Grotesk / Spline Sans Mono).
 
 ### Run it
 
-Just open `index.html` in a browser, or serve the folder:
+Open `index.html` in a browser, or serve the folder:
 
 ```bash
 python3 -m http.server 8000   # then visit http://localhost:8000
 ```
 
-Deploy anywhere that serves static files (Netlify, Vercel, Cloudflare Pages,
-GitHub Pages, S3, or a classic host — matching the doc's "marketing site is a
-separate phase from the app" architecture).
+Deploy anywhere static (Vercel, Netlify, Cloudflare Pages, GitHub Pages, S3).
 
 ## Design signature
 
-A literal **throughline**: a thread that runs down the page, its color shifting
-from a cool *dusk* (stuck) to a warm *dawn* (arrived). It fills as you scroll
-(left rail on wide screens) and draws itself in the hero — encoding the promise
-that your experience carries through the change. Respects
-`prefers-reduced-motion`.
+A literal **throughline**: a thread that runs down the page, shifting from a cool
+*dusk* (stuck) to a warm *dawn* (arrived). It fills as you scroll (left rail on
+wide screens) and draws itself in the hero — encoding the promise that your
+experience carries through the change. Respects `prefers-reduced-motion`.
+
+## The coaches are placeholders
+
+The 8 coaches are a **founding-roster mock-up**, clearly labelled illustrative on
+the page. Specifically:
+
+- **Portraits** (`assets/coaches/*.svg`) are flat illustrated *placeholders* —
+  intentionally not photos of real people. Replace each with a real coach
+  headshot (square, ~square crop; the CSS circle-masks them).
+- **Names, credentials, and pivots** are invented examples. Replace with real,
+  consented coach profiles before launch, and keep the on-page disclaimer until
+  the roster is real.
+- No fabricated ratings or review counts are shown.
+- The filter categories live in `data-cats` on each `.coach` article and the
+  `.chip` buttons in `#coachFilters` — keep them in sync when you edit the roster.
 
 ## Before you publish — fill these in
 
-The site ships with honest placeholders, **not** invented proof. Replace:
-
-1. **Booking link** — the primary CTA currently points to
-   `mailto:hello@throughline.coach`. Swap for your real scheduler (Cal.com,
-   Calendly, etc.). Search `#book` and the `mailto:` links.
-2. **Contact email** — `hello@throughline.coach` appears in the CTA and footer.
-3. **The 2-min assessment** — the secondary CTA (`#assessment`) currently
-   anchors to the footer as a placeholder. Wire it to a real quiz / email
-   capture when ready.
-4. **Pricing** — intentionally not shown (revealed on the call). Add a pricing
-   section only if you want it public.
-5. **Case studies** — the four pivot stories are clearly labeled *illustrative
-   composite examples*, not testimonials. Replace with real, consented client
-   stories once you have them (and keep the disclaimer until you do).
-6. **"PIVOT Method™" / "Clear-Path Guarantee"** — verify you can defend the ™
-   and honor the guarantee terms before publishing. Adjust wording to match what
-   you'll actually deliver.
-7. **Coach credibility** — the trust strip claims ICF-credentialed coaches and a
-   research-backed method. Make sure these are true for your roster.
+1. **Booking / matching flow** — CTAs currently use `mailto:hello@throughline.coach`
+   and per-coach intro-call mailto links. Wire these to your real scheduler and
+   matching form (Cal.com, Calendly, a typeform, etc.).
+2. **Contact email** — `hello@throughline.coach` appears throughout.
+3. **Real coaches** — swap the placeholder portraits and profiles (see above).
+4. **Pricing** — intentionally not shown as hard numbers (each coach sets their
+   own, revealed in-app). Adjust if you want public pricing.
+5. **"Right-Fit Guarantee"** — confirm you can honor the rematch/refund terms.
+6. **Credibility claims** — the trust strip and FAQ state coaches are
+   ICF-credentialed and vetted; make sure that's true for your roster.
 
 ## Renaming the brand
 
-Replace "Throughline" in `index.html` (brand text appears in the nav, footer,
-copyright, and `<title>`/meta) and update the tagline in the footer. The logo is
-inline SVG in the nav and footer plus `assets/favicon.svg`.
+Replace "Throughline" in `index.html` (nav, footer, copyright, `<title>`/meta)
+and the footer tagline. The logo is inline SVG in the nav and footer plus
+`assets/favicon.svg`.
