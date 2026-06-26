@@ -1,13 +1,20 @@
 # Throughline — marketing site
 
-The public marketing site for a career-coaching **marketplace**. It is the first
-page prospects find. It does two jobs:
+The public marketing site for a career-coaching **marketplace + community**. It
+is the first page prospects find. It does three jobs:
 
 1. Tells visitors this site is about **changing careers** — pivoting into a
    different field, with a specialty in the AI-era roles that matter for **2026**.
-2. Tells them it's where they **find the best coach for their situation** — a
-   curated roster of coaches who have *"been there, done that"* (each has made a
-   major career change themselves), matched to the visitor's background and goals.
+2. Tells them it's where they **browse and pick the best coach for them** — a
+   curated roster of coaches who *specialize in guiding career transitions*.
+   Browsing is the main action; an optional matchmaker exists only to help the
+   undecided. There is **no forced/auto matching**.
+3. Introduces **Accountability Circles** — small peer groups of members making
+   the change together (the community layer that sets us apart from a directory).
+
+> Coach claim guardrail: we do **not** claim every coach personally made the same
+> move. Coaches "specialize in" / "guide" these transitions — some have made one
+> themselves, all have guided others. Keep copy on that side of the line.
 
 > "Throughline" is a working brand name (it means *your experience is the thread
 > carried into the new career*). It's easy to swap — see **Renaming the brand**.
@@ -39,10 +46,10 @@ trust-without-fabrication).
 ## Page structure
 
 Nav · Hero (title + "where you are → where you're going" graphic) · trust strip ·
-problem / "the slow slide" · why a specialist coach · **How it works** (3 steps) ·
-**Coaches** (filterable roster of 8) · 2026 careers · who it's for/not for ·
-comparison vs alternatives · what it costs + Right-Fit Guarantee · "Are you a
-coach?" band · FAQ · final CTA · footer.
+problem / "the slow slide" · why a specialist coach · **How it works** (browse →
+meet → choose, 3 steps) · **Coaches** (filterable roster of 8) · 2026 careers ·
+**Accountability Circles** (community + waitlist) · who it's for/not for · what it
+costs + Right-Fit Guarantee · "Are you a coach?" band · FAQ · final CTA · footer.
 
 ## Tech
 
@@ -91,9 +98,10 @@ the page. Specifically:
 
 ## Before you publish — fill these in
 
-1. **Booking / matching flow** — CTAs currently use `mailto:hello@throughline.coach`
-   and per-coach intro-call mailto links. Wire these to your real scheduler and
-   matching form (Cal.com, Calendly, a typeform, etc.).
+1. **Booking / helper flows** — CTAs currently use `mailto:hello@throughline.coach`
+   and per-coach intro-call mailto links. Wire up: a real scheduler for intro
+   calls (Cal.com, Calendly), the optional "matchmaker" helper (a short quiz), and
+   the **Accountability Circles waitlist** capture.
 2. **Contact email** — `hello@throughline.coach` appears throughout.
 3. **Real coaches** — swap the placeholder portraits and profiles (see above).
 4. **Pricing** — intentionally not shown as hard numbers (each coach sets their
