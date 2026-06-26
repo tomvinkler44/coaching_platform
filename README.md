@@ -1,4 +1,4 @@
-# Throughline — marketing site
+# 5Careers — marketing site
 
 The public marketing site for a career-coaching **marketplace + community**. It
 is the first page prospects find. It does three jobs:
@@ -16,13 +16,13 @@ is the first page prospects find. It does three jobs:
 > move. Coaches "specialize in" / "guide" these transitions — some have made one
 > themselves, all have guided others. Keep copy on that side of the line.
 
-> "Throughline" is a working brand name (it means *your experience is the thread
+> "5Careers" is a working brand name (it means *your experience is the thread
 > carried into the new career*). It's easy to swap — see **Renaming the brand**.
 
 ## Positioning
 
 > For experienced professionals (10–20 yrs) who feel stuck or quietly threatened
-> by AI and want a real pivot, **Throughline** is the coaching **marketplace**
+> by AI and want a real pivot, **5Careers** is the coaching **marketplace**
 > that matches you with vetted coaches who have personally changed careers into
 > AI-era 2026 roles — unlike generic coaching directories (hundreds of profiles
 > you vet yourself) or executive placement firms (they only optimize the career
@@ -98,11 +98,11 @@ the page. Specifically:
 
 ## Before you publish — fill these in
 
-1. **Booking / helper flows** — CTAs currently use `mailto:hello@throughline.coach`
+1. **Booking / helper flows** — CTAs currently use `mailto:hello@5careers.com`
    and per-coach intro-call mailto links. Wire up: a real scheduler for intro
    calls (Cal.com, Calendly), the optional "matchmaker" helper (a short quiz), and
    the **Accountability Circles waitlist** capture.
-2. **Contact email** — `hello@throughline.coach` appears throughout.
+2. **Contact email** — `hello@5careers.com` appears throughout.
 3. **Real coaches** — swap the placeholder portraits and profiles (see above).
 4. **Pricing** — intentionally not shown as hard numbers (each coach sets their
    own, revealed in-app). Adjust if you want public pricing.
@@ -112,6 +112,6 @@ the page. Specifically:
 
 ## Renaming the brand
 
-Replace "Throughline" in `index.html` (nav, footer, copyright, `<title>`/meta)
+Replace "5Careers" in `index.html` (nav, footer, copyright, `<title>`/meta)
 and the footer tagline. The logo is inline SVG in the nav and footer plus
 `assets/favicon.svg`.

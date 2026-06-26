@@ -1,4 +1,4 @@
-/* Throughline — interaction layer
+/* 5Careers — interaction layer
    - the throughline rail fills dusk→dawn with scroll progress
    - sections reveal on scroll; PIVOT nodes light up as they arrive
    - the hero thread draws itself on load
