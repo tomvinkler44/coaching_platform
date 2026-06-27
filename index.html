@@ -18,6 +18,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#coaches">Skip to coaches</a>
+
 <!-- the throughline rail: fills dusk→dawn as you scroll -->
 <div class="rail" aria-hidden="true">
   <div class="rail-track"></div>
@@ -38,16 +40,20 @@
       </svg>
       5Careers
     </a>
-    <nav class="nav-links" aria-label="Primary">
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
       <a href="#how">How it works</a>
       <a href="#coaches">Coaches</a>
       <a href="#circles">Circles</a>
       <a href="#roles">2026 careers</a>
       <a href="#faq">FAQ</a>
+      <a href="#coaches" class="btn btn-primary nav-menu-cta">Browse coaches <span class="arrow">→</span></a>
     </nav>
     <div class="nav-cta">
       <a href="#how" class="btn btn-ghost">How it works</a>
       <a href="#coaches" class="btn btn-primary">Browse coaches <span class="arrow">→</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
     </div>
   </div>
 </header>
@@ -63,7 +69,7 @@
       <p class="lead">5Careers is where experienced professionals find a coach who specializes in career change for 2026. Browse the roster, see who you click with, and book a free intro call — no forced matching, no pressure.</p>
       <div class="hero-actions">
         <a href="#coaches" class="btn btn-primary btn-lg">Browse coaches <span class="arrow">→</span></a>
-        <a href="mailto:hello@5careers.com?subject=Help%20me%20choose%20a%20coach" class="btn btn-ghost btn-lg">Not sure? Help me choose</a>
+        <button type="button" class="btn btn-ghost btn-lg" data-open="matchmaker">Not sure? Help me choose</button>
       </div>
       <p class="hero-reassure">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -71,7 +77,7 @@
       </p>
     </div>
 
-    <div class="hero-visual reveal">
+    <div class="hero-visual reveal" id="heroVisual">
       <svg class="hero-thread" viewBox="0 0 300 380" preserveAspectRatio="none" aria-hidden="true">
         <path id="heroPath" d="M40 50 C 120 90, 60 200, 160 230 C 240 254, 210 320, 260 340"
               fill="none" stroke="url(#heroGrad)" stroke-width="2.5" stroke-linecap="round"/>
@@ -81,14 +87,15 @@
       </svg>
       <div class="hero-card from">
         <span class="meta">Where you are</span>
-        <span class="role">Operations Manager</span>
-        <span class="tag">"I can feel my role being hollowed out, one task at a time."</span>
+        <span class="role" id="fromRole">Operations Manager</span>
+        <span class="tag" id="fromTag">"I can feel my role being hollowed out, one task at a time."</span>
       </div>
       <div class="hero-card to">
         <span class="meta">Where you're going</span>
-        <span class="role">AI Adoption Strategist</span>
-        <span class="tag">With a coach who knows the path you're on.</span>
+        <span class="role" id="toRole">AI Adoption Strategist</span>
+        <span class="tag" id="toTag">With a coach who knows the path you're on.</span>
       </div>
+      <div class="hero-dots" id="heroDots" role="tablist" aria-label="Example career changes"></div>
     </div>
   </div>
 </section>
@@ -153,7 +160,7 @@
     </div>
     <div class="how-cta reveal">
       <a href="#coaches" class="btn btn-primary btn-lg">Browse the coaches <span class="arrow">→</span></a>
-      <p class="how-helper">Can't decide between a few? <a href="mailto:hello@5careers.com?subject=Help%20me%20choose%20a%20coach" class="textlink">Our 2-minute matchmaker can suggest some</a> — but you're never locked in.</p>
+      <p class="how-helper">Can't decide between a few? <button type="button" class="linkbtn" data-open="matchmaker">Try our 2-minute matchmaker</button> — it only ever suggests, you're never locked in.</p>
     </div>
   </div>
 </section>
@@ -167,7 +174,7 @@
       <p>Browse the full roster and pick who fits — no one is assigned to you. Filter by the field you're moving toward, or the one you're coming from. Every coach is vetted for real expertise in guiding career transitions.</p>
     </div>
 
-    <div class="chips reveal" id="coachFilters" role="tablist" aria-label="Filter coaches by specialty">
+    <div class="chips reveal" id="coachFilters" role="group" aria-label="Filter coaches by specialty">
       <button class="chip active" data-filter="all" aria-pressed="true">All coaches</button>
       <button class="chip" data-filter="ai" aria-pressed="false">AI &amp; Tech</button>
       <button class="chip" data-filter="law" aria-pressed="false">Law &amp; Compliance</button>
@@ -177,6 +184,7 @@
       <button class="chip" data-filter="finance" aria-pressed="false">Finance &amp; Impact</button>
       <button class="chip" data-filter="media" aria-pressed="false">Media &amp; Design</button>
     </div>
+    <p class="coach-count" id="coachCount" aria-live="polite">Showing all 8 coaches</p>
 
     <div class="coaches-grid" id="coachGrid">
       <article class="coach reveal" data-cats="ai">
@@ -251,8 +259,59 @@
         <a class="coach-cta" href="mailto:hello@5careers.com?subject=Intro%20call%20with%20Priya%20Nair">Book a free intro call <span class="arrow">→</span></a>
       </article>
     </div>
-    <p class="empty-note" id="coachEmpty" hidden>No coaches in that category yet — <a href="#coaches" data-filter-reset>see all coaches</a>.</p>
+    <p class="empty-note" id="coachEmpty" hidden>No coaches in that category yet — <button type="button" class="linkbtn" data-open="matchmaker">try the matchmaker</button> or <a href="#coaches" data-filter-reset>see all coaches</a>.</p>
     <p class="disclaimer">Founding roster shown for illustration — names, portraits and details are placeholders while we hand-vet our first coaches. Every listed coach will be verified for real expertise in guiding career transitions before going live.</p>
+  </div>
+</section>
+
+<!-- ============================================= CIRCLES (community) -->
+<section class="section circles" id="circles">
+  <div class="wrap">
+    <div class="circles-panel reveal">
+      <div class="circles-copy">
+        <span class="eyebrow">More than a directory</span>
+        <h2>You don't have to walk it alone</h2>
+        <p class="lead">A great coach gets you moving. A few people making the same change keep you going. <strong>Accountability Circles</strong> are small groups of members in transition together — so the loneliest part of changing careers stops being lonely.</p>
+        <ul class="circle-feats">
+          <li><span class="cf-ic" aria-hidden="true">◦</span><div><strong>Grouped so you're peers, not rivals</strong><p>Small pods of 4–6, matched by where you are — exploring, validating, or actively applying — and varied targets, so no one's competing for your job.</p></div></li>
+          <li><span class="cf-ic" aria-hidden="true">◦</span><div><strong>45 minutes a week, same group</strong><p>A simple format — wins, blockers, one commitment each — so progress keeps happening between coaching sessions, not just during them.</p></div></li>
+          <li><span class="cf-ic" aria-hidden="true">◦</span><div><strong>A coach keeps it on track</strong><p>A trained 5Careers coach facilitates, so it never drifts into a venting session or a networking pitch.</p></div></li>
+        </ul>
+        <p class="circle-price"><strong>Free while you're working with a coach</strong> — or join on its own for a small monthly membership.</p>
+        <div class="hero-actions">
+          <button type="button" class="btn btn-primary btn-lg" data-open="waitlist">Join the Circles waitlist <span class="arrow">→</span></button>
+        </div>
+        <p class="circle-note">Now forming — we're starting the first Circles with our founding members.</p>
+      </div>
+      <div class="circles-visual" aria-hidden="true">
+        <svg viewBox="0 0 260 260" width="100%" height="100%">
+          <defs>
+            <linearGradient id="cthread" x1="0" y1="0" x2="260" y2="260" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6f8a98"/><stop offset="1" stop-color="#e6a24a"/>
+            </linearGradient>
+          </defs>
+          <!-- connecting threads (the pod, linked) -->
+          <g stroke="url(#cthread)" stroke-width="2" fill="none" opacity="0.55">
+            <path d="M130 130 L130 40"/><path d="M130 130 L215 95"/><path d="M130 130 L198 200"/>
+            <path d="M130 130 L62 200"/><path d="M130 130 L45 95"/>
+            <path d="M130 40 L215 95 L198 200 L62 200 L45 95 Z"/>
+          </g>
+          <!-- peer nodes -->
+          <g>
+            <circle cx="130" cy="40" r="22" fill="#eae3d6" stroke="#d97746" stroke-width="2"/>
+            <circle cx="215" cy="95" r="22" fill="#e4ebee" stroke="#6f8a98" stroke-width="2"/>
+            <circle cx="198" cy="200" r="22" fill="#efe4dc" stroke="#e6a24a" stroke-width="2"/>
+            <circle cx="62" cy="200" r="22" fill="#e7ece6" stroke="#6f8a98" stroke-width="2"/>
+            <circle cx="45" cy="95" r="22" fill="#f0e7d8" stroke="#d97746" stroke-width="2"/>
+            <!-- center: the coach moderator -->
+            <circle cx="130" cy="130" r="30" fill="#15231d"/>
+            <circle cx="130" cy="122" r="9" fill="#e6a24a"/>
+            <path d="M112 150 c0 -12 36 -12 36 0 Z" fill="#e6a24a"/>
+          </g>
+        </svg>
+        <span class="circles-cap">A Circle: peers in transition, one coach.</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -299,71 +358,20 @@
   </div>
 </section>
 
-<!-- ============================================= CIRCLES (community) -->
-<section class="section circles" id="circles">
-  <div class="wrap">
-    <div class="circles-panel reveal">
-      <div class="circles-copy">
-        <span class="eyebrow">More than a directory</span>
-        <h2>You don't have to walk it alone</h2>
-        <p class="lead">A great coach gets you moving. A few people making the same change keep you going. <strong>Accountability Circles</strong> are small groups of members in transition together — so the loneliest part of changing careers stops being lonely.</p>
-        <ul class="circle-feats">
-          <li><span class="cf-ic" aria-hidden="true">◦</span><div><strong>Grouped by your stage &amp; goal</strong><p>Small pods of 4–6, matched by where you are — exploring, validating, or actively applying — and the field you're headed to.</p></div></li>
-          <li><span class="cf-ic" aria-hidden="true">◦</span><div><strong>Weekly check-ins that stick</strong><p>Shared goals and a simple rhythm, so progress keeps happening between coaching sessions, not just during them.</p></div></li>
-          <li><span class="cf-ic" aria-hidden="true">◦</span><div><strong>A coach keeps it on track</strong><p>Light moderation from a 5Careers coach, so the group stays useful, honest, and moving forward.</p></div></li>
-        </ul>
-        <p class="circle-price"><strong>Free while you're working with a coach</strong> — or join on its own for a small monthly membership.</p>
-        <div class="hero-actions">
-          <a href="mailto:hello@5careers.com?subject=Accountability%20Circles%20waitlist" class="btn btn-primary btn-lg">Join the Circles waitlist <span class="arrow">→</span></a>
-        </div>
-        <p class="circle-note">Now forming — we're starting the first Circles with our founding members.</p>
-      </div>
-      <div class="circles-visual" aria-hidden="true">
-        <svg viewBox="0 0 260 260" width="100%" height="100%">
-          <defs>
-            <linearGradient id="cthread" x1="0" y1="0" x2="260" y2="260" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#6f8a98"/><stop offset="1" stop-color="#e6a24a"/>
-            </linearGradient>
-          </defs>
-          <!-- connecting threads (the pod, linked) -->
-          <g stroke="url(#cthread)" stroke-width="2" fill="none" opacity="0.55">
-            <path d="M130 130 L130 40"/><path d="M130 130 L215 95"/><path d="M130 130 L198 200"/>
-            <path d="M130 130 L62 200"/><path d="M130 130 L45 95"/>
-            <path d="M130 40 L215 95 L198 200 L62 200 L45 95 Z"/>
-          </g>
-          <!-- peer nodes -->
-          <g>
-            <circle cx="130" cy="40" r="22" fill="#eae3d6" stroke="#d97746" stroke-width="2"/>
-            <circle cx="215" cy="95" r="22" fill="#e4ebee" stroke="#6f8a98" stroke-width="2"/>
-            <circle cx="198" cy="200" r="22" fill="#efe4dc" stroke="#e6a24a" stroke-width="2"/>
-            <circle cx="62" cy="200" r="22" fill="#e7ece6" stroke="#6f8a98" stroke-width="2"/>
-            <circle cx="45" cy="95" r="22" fill="#f0e7d8" stroke="#d97746" stroke-width="2"/>
-            <!-- center: the coach moderator -->
-            <circle cx="130" cy="130" r="30" fill="#15231d"/>
-            <circle cx="130" cy="122" r="9" fill="#e6a24a"/>
-            <path d="M112 150 c0 -12 36 -12 36 0 Z" fill="#e6a24a"/>
-          </g>
-        </svg>
-        <span class="circles-cap">A Circle: peers in transition, one coach.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============================================= FIT -->
 <section class="section fit" id="fit">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Honest fit</span>
       <h2>Who 5Careers is for — and who it isn't</h2>
-      <p>We do one thing: match career changers with coaches who specialize in AI-era pivots. That focus is the whole value, so we're upfront about who it serves.</p>
+      <p>We do one thing: connect career changers with coaches who specialize in AI-era pivots. That focus is the whole value, so we're upfront about who it serves.</p>
     </div>
     <div class="fit-grid">
       <div class="fit-col yes reveal">
         <h3><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> This is for you if…</h3>
         <ul>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> You have 10+ years of experience and too much built to throw it away.</li>
-          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> You want a guide who's actually changed careers — not generic advice.</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> You want a guide who specializes in your kind of move — not generic, follow-your-passion advice.</li>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> You're done pretending the slide isn't happening and want a real plan.</li>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> You'll do the work — an hour at a time, with someone in your corner.</li>
         </ul>
@@ -403,7 +411,7 @@
       <aside class="guarantee reveal">
         <span class="seal">Risk reversal</span>
         <h3>The Right-Fit Guarantee</h3>
-        <p>Your intro call is always free, so you never pay to find out if a coach is right for you. And if your first paid session isn't the fit you hoped for, we'll rematch you with another coach — or refund it.</p>
+        <p>Your intro call is always free, so you never pay to find out if a coach is right for you. And if your first paid session isn't right — your call, no questions — just tell us within 7 days and we'll rematch you with another coach or refund that session.</p>
         <p>Finding the right coach should feel safe, not like a gamble.</p>
       </aside>
     </div>
@@ -431,13 +439,13 @@
       <h2>The questions you're already asking</h2>
     </div>
     <div class="faq-list reveal">
-      <details class="faq-item"><summary class="faq-q">How are the coaches vetted?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">We only list coaches with a real track record of guiding people through career change. Before anyone joins the roster we verify their credentials (such as ICF certification), their professional background, and their outcomes. The whole point is that you're not gambling on a stranger.</div></details>
+      <details class="faq-item"><summary class="faq-q">How are the coaches vetted?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">We only list coaches with a real track record of guiding people through career change. Before anyone joins the roster we verify their credentials (such as ICF certification), their professional background, and references from people they've coached through a transition. The whole point is that you're not gambling on a stranger.</div></details>
       <details class="faq-item"><summary class="faq-q">Will I be matched to a coach automatically?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">No — and that's on purpose. You browse the full roster and choose for yourself, and you can book a free intro call with anyone. If you'd like a hand narrowing it down, our optional 2-minute matchmaker can suggest a few coaches that fit — but you're never locked into a match.</div></details>
-      <details class="faq-item"><summary class="faq-q">What are Accountability Circles?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">Small groups of members who are changing careers at the same time, grouped by where you are in the journey and where you're headed, with a coach keeping things on track. It's the antidote to how isolating a transition can be. Circles are free while you're working with a coach, or available on their own for a small membership — <a href="mailto:hello@5careers.com?subject=Accountability%20Circles%20waitlist">join the waitlist</a>.</div></details>
+      <details class="faq-item"><summary class="faq-q">What are Accountability Circles?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">Small groups of members who are changing careers at the same time, grouped by where you are in the journey and where you're headed, with a coach keeping things on track. It's the antidote to how isolating a transition can be. Circles are free while you're working with a coach, or available on their own for a small membership — <button type="button" class="linkbtn" data-open="waitlist">join the waitlist</button>.</div></details>
       <details class="faq-item"><summary class="faq-q">What does it cost?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">Browsing, getting matched, and your first intro call are all free. After that, each coach sets their own per-session or package pricing, shown upfront before you book. There's no subscription required to start.</div></details>
       <details class="faq-item"><summary class="faq-q">What if my coach isn't the right fit?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">The free intro call is designed to catch that before any money changes hands. And if your first paid session still isn't right, we'll rematch you with another coach or refund it — no awkwardness.</div></details>
-      <details class="faq-item"><summary class="faq-q">Aren't I too old to change careers?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">No — you're too experienced to start over, which is different. People change careers in their 40s and 50s successfully every day. What stops most isn't age — it's not having a credible plan and trying to do it alone. A coach who's already made your move is exactly that plan.</div></details>
-      <details class="faq-item"><summary class="faq-q">How do I know AI won't just take the new job too?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">Because our coaches don't guess. They match you to roles that are growing because of AI — where human judgment, relationships, and accountability are the product — not roles in line to be replaced. You'll understand the reasoning before you commit to a direction.</div></details>
+      <details class="faq-item"><summary class="faq-q">Aren't I too old to change careers?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">No — you're too experienced to start over, which is different. People change careers in their 40s and 50s successfully every day. What stops most isn't age — it's not having a credible plan and trying to do it alone. A coach who specializes in your kind of move is exactly that plan.</div></details>
+      <details class="faq-item"><summary class="faq-q">How do I know AI won't just take the new job too?<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">No one can honestly call any job "AI-proof." What our coaches can do is steer you toward roles where the trend is on your side — where human judgment, relationships, and accountability are the product — and away from ones clearly in automation's path. You'll see the reasoning before you commit to a direction.</div></details>
     </div>
   </div>
 </section>
@@ -451,7 +459,7 @@
     <p>Browse coaches who specialize in your kind of move, book a free intro call, and walk it with a circle of people making the same change.</p>
     <div class="hero-actions">
       <a href="#coaches" class="btn btn-primary btn-lg">Browse coaches <span class="arrow">→</span></a>
-      <a href="mailto:hello@5careers.com?subject=Help%20me%20choose%20a%20coach" class="btn btn-ghost btn-lg on-dark">Not sure? Help me choose</a>
+      <button type="button" class="btn btn-ghost btn-lg on-dark" data-open="matchmaker">Not sure? Help me choose</button>
     </div>
     <p class="final-reassure">Free to browse. Free to meet a coach. You always choose.</p>
   </div>
@@ -472,7 +480,7 @@
           </svg>
           5Careers
         </a>
-        <p class="footer-tagline">The coaching marketplace for career changers. Find a coach who's already walked your path.</p>
+        <p class="footer-tagline">The coaching marketplace for career changers. Find a coach who specializes in your exact kind of move.</p>
       </div>
       <div class="footer-cols">
         <div>
@@ -501,6 +509,119 @@
     </div>
   </div>
 </footer>
+
+<!-- ============================================= MATCHMAKER MODAL -->
+<div class="modal-overlay" id="matchmaker" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mmTitle">
+    <button type="button" class="modal-close" data-close aria-label="Close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <p class="mm-step-label" id="mmStepLabel" aria-live="polite">Step 1 of 3</p>
+    <div class="mm-progress" aria-hidden="true"><span></span><span></span><span></span></div>
+
+    <form id="mmForm">
+      <!-- step 1 -->
+      <fieldset class="mm-screen" data-step="1">
+        <legend class="mm-q" id="mmTitle">Where are you coming from?</legend>
+        <p class="mm-sub">Pick the world that's closest to your current work.</p>
+        <div class="mm-options" role="radiogroup" aria-label="Where are you coming from?">
+          <button type="button" class="mm-opt" data-q="from" data-val="ops">Operations / Management</button>
+          <button type="button" class="mm-opt" data-q="from" data-val="tech">Tech / Engineering</button>
+          <button type="button" class="mm-opt" data-q="from" data-val="marketing">Marketing / Comms</button>
+          <button type="button" class="mm-opt" data-q="from" data-val="law">Law / Compliance</button>
+          <button type="button" class="mm-opt" data-q="from" data-val="finance">Finance / Banking</button>
+          <button type="button" class="mm-opt" data-q="from" data-val="education">Education / Teaching</button>
+          <button type="button" class="mm-opt" data-q="from" data-val="media">Media / Creative</button>
+          <button type="button" class="mm-opt" data-q="from" data-val="other">Something else</button>
+        </div>
+      </fieldset>
+
+      <!-- step 2 -->
+      <fieldset class="mm-screen" data-step="2" hidden>
+        <legend class="mm-q">Where do you want to head?</legend>
+        <p class="mm-sub">No wrong answer — "not sure yet" is a real choice.</p>
+        <div class="mm-options" role="radiogroup" aria-label="Where do you want to head?">
+          <button type="button" class="mm-opt" data-q="to" data-val="ai">Work with AI — governance, adoption, product</button>
+          <button type="button" class="mm-opt" data-q="to" data-val="marketing">Marketing in the AI era</button>
+          <button type="button" class="mm-opt" data-q="to" data-val="ai">Data &amp; analytics</button>
+          <button type="button" class="mm-opt" data-q="to" data-val="engineering">Sustainability &amp; climate</button>
+          <button type="button" class="mm-opt" data-q="to" data-val="education">Learning &amp; development</button>
+          <button type="button" class="mm-opt" data-q="to" data-val="law">Compliance &amp; governance</button>
+          <button type="button" class="mm-opt" data-q="to" data-val="all">Honestly, not sure yet</button>
+        </div>
+      </fieldset>
+
+      <!-- step 3 -->
+      <fieldset class="mm-screen" data-step="3" hidden>
+        <legend class="mm-q">How far along are you?</legend>
+        <p class="mm-sub">This helps us suggest the right starting point.</p>
+        <div class="mm-options" role="radiogroup" aria-label="How far along are you?">
+          <button type="button" class="mm-opt" data-q="stage" data-val="exploring">Just exploring — figuring out what's next</button>
+          <button type="button" class="mm-opt" data-q="stage" data-val="validating">Validating — testing a direction or two</button>
+          <button type="button" class="mm-opt" data-q="stage" data-val="applying">Actively applying — ready to make the move</button>
+        </div>
+      </fieldset>
+    </form>
+
+    <!-- result -->
+    <div class="mm-result" id="mmResult" hidden>
+      <h3 class="mm-q" id="mmResultTitle">A few coaches worth a look</h3>
+      <p class="mm-sub" id="mmResultSub">These are suggestions only — you're free to browse everyone and choose anyone.</p>
+      <div class="mm-result-grid" id="mmResultGrid"></div>
+      <p class="mm-tip" id="mmTip" hidden></p>
+      <div class="mm-result-actions">
+        <a href="#coaches" class="btn btn-primary" data-close>See all 8 coaches <span class="arrow">→</span></a>
+        <button type="button" class="linkbtn" id="mmRestart">Start over</button>
+      </div>
+    </div>
+
+    <div class="mm-nav" id="mmNav">
+      <button type="button" class="btn btn-ghost" id="mmBack" hidden>Back</button>
+      <span class="mm-nav-spacer"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================= WAITLIST MODAL -->
+<div class="modal-overlay" id="waitlist" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="wlTitle">
+    <button type="button" class="modal-close" data-close aria-label="Close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <form id="wlForm" class="wl-form" novalidate>
+      <span class="eyebrow">Accountability Circles</span>
+      <h3 class="mm-q" id="wlTitle">Join the waitlist</h3>
+      <p class="mm-sub">We're forming the first Circles now. Tell us where you are and we'll reach out when one fits.</p>
+      <label class="field">
+        <span class="field-label">Email <span aria-hidden="true">*</span></span>
+        <input type="email" name="email" id="wlEmail" required autocomplete="email" placeholder="you@example.com" />
+      </label>
+      <label class="field">
+        <span class="field-label">Where are you in the journey?</span>
+        <select name="stage" id="wlStage">
+          <option value="exploring">Just exploring</option>
+          <option value="validating">Validating a direction</option>
+          <option value="applying">Actively applying</option>
+        </select>
+      </label>
+      <label class="field">
+        <span class="field-label">Where are you headed? <span class="field-opt">(optional)</span></span>
+        <input type="text" name="target" id="wlTarget" placeholder="e.g. AI governance, L&amp;D, sustainability…" />
+      </label>
+      <p class="field-error" id="wlError" hidden>Please enter a valid email.</p>
+      <button type="submit" class="btn btn-primary btn-lg">Join the waitlist <span class="arrow">→</span></button>
+      <p class="wl-fineprint">No spam. We'll only email you about your Circle.</p>
+    </form>
+    <div class="wl-success" id="wlSuccess" hidden>
+      <div class="wl-check" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <h3 class="mm-q">You're on the list</h3>
+      <p class="mm-sub" id="wlSuccessMsg">We'll email you the moment a Circle matching your stage is forming. Talk soon.</p>
+      <button type="button" class="btn btn-ghost" data-close>Close</button>
+    </div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>

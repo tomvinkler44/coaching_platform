@@ -98,10 +98,13 @@ the page. Specifically:
 
 ## Before you publish — fill these in
 
-1. **Booking / helper flows** — CTAs currently use `mailto:hello@5careers.com`
-   and per-coach intro-call mailto links. Wire up: a real scheduler for intro
-   calls (Cal.com, Calendly), the optional "matchmaker" helper (a short quiz), and
-   the **Accountability Circles waitlist** capture.
+1. **Booking / helper flows** —
+   - The **matchmaker** (3-step quiz → suggested coaches) and the **Circles
+     waitlist** (email + stage) are built as front-end flows in `script.js`. The
+     waitlist currently shows a success state but does **not** store anything —
+     wire `#wlForm` submit to a real endpoint (Formspree, your API, etc.).
+   - Per-coach **"Book a free intro call"** and **"Apply to join"** still use
+     `mailto:hello@5careers.com`. Swap for a real scheduler (Cal.com, Calendly).
 2. **Contact email** — `hello@5careers.com` appears throughout.
 3. **Real coaches** — swap the placeholder portraits and profiles (see above).
 4. **Pricing** — intentionally not shown as hard numbers (each coach sets their
