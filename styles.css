@@ -191,6 +191,12 @@ a.textlink:hover { border-color: var(--dawn-deep); }
   .hero-visual { order: -1; aspect-ratio: 3/2; min-height: 280px; max-width: 460px; }
 }
 
+/* hero direction arrows: flashing chevrons that flow toward "where you're going" */
+.hero-arrows { position: absolute; left: 15%; top: 25%; width: 52%; height: 54%; pointer-events: none; overflow: visible; }
+.hero-arrows path { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.hero-arrows .chev { opacity: .16; animation: chevFlow 1.9s var(--ease) infinite; }
+@keyframes chevFlow { 0%, 100% { opacity: .16; } 42% { opacity: 1; } }
+
 /* trust strip */
 .trust { border-block: 1px solid var(--line); }
 .trust .wrap { display: flex; align-items: center; gap: clamp(1rem,4vw,3rem); flex-wrap: wrap; padding-block: 1.4rem; }
@@ -591,5 +597,6 @@ body.modal-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  .hero-arrows .chev { opacity: .5 !important; }
   * { animation-duration: .001ms !important; }
 }
