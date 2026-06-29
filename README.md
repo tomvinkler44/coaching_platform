@@ -83,6 +83,13 @@ experience carries through the change. Respects `prefers-reduced-motion`.
 
 ## The coaches are placeholders
 
+All coach data lives in **one place**: the `COACHES` array near the top of the
+`coaches()` block in `script.js`, index-aligned with the cards in `#coachGrid`.
+Each entry drives the card **and** the click-through **Profile modal** (bio,
+location, intro video, content feed, Before→Pivot→After case study, free
+resource, and taster offering). Edit that array to change the roster; add/remove
+a card in `index.html` in the same order.
+
 The 8 coaches are a **founding-roster mock-up**, clearly labelled illustrative on
 the page. Specifically:
 
@@ -103,8 +110,14 @@ the page. Specifically:
      waitlist** (email + stage) are built as front-end flows in `script.js`. The
      waitlist currently shows a success state but does **not** store anything —
      wire `#wlForm` submit to a real endpoint (Formspree, your API, etc.).
-   - Per-coach **"Book a free intro call"** and **"Apply to join"** still use
-     `mailto:hello@5careers.com`. Swap for a real scheduler (Cal.com, Calendly).
+   - Per-coach **chemistry call**, **taster session**, and **"Apply to join"**
+     still use `mailto:hello@5careers.com`. Swap for a real scheduler/checkout.
+   - **Lead magnets**: the profile "Get the guide" form is front-end only — wire
+     it to deliver the file and pass the lead to the coach.
+   - **Coach videos & content feed**: profiles show a "coming soon" intro and
+     sample content tiles — add real video URLs/embeds per coach in `COACHES`.
+   - **Case studies & taster prices** in `COACHES` are illustrative — replace
+     with real, consented outcomes and each coach's actual taster price.
 2. **Contact email** — `hello@5careers.com` appears throughout.
 3. **Real coaches** — swap the placeholder portraits and profiles (see above).
 4. **Pricing** — intentionally not shown as hard numbers (each coach sets their

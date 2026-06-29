@@ -178,18 +178,48 @@
     <div class="section-head reveal">
       <span class="eyebrow">The roster</span>
       <h2>Coaches who specialize in career change</h2>
-      <p>Browse the full roster and pick who fits — no one is assigned to you. Filter by the field you're moving toward, or the one you're coming from. Every coach is vetted for real expertise in guiding career transitions.</p>
+      <p>Browse by the exact move you're making — where you're coming from, where you want to go, or the specific roadblock in your way. No one is assigned to you; you choose.</p>
     </div>
 
-    <div class="chips reveal" id="coachFilters" role="group" aria-label="Filter coaches by specialty">
-      <button class="chip active" data-filter="all" aria-pressed="true">All coaches</button>
-      <button class="chip" data-filter="ai" aria-pressed="false">AI &amp; Tech</button>
-      <button class="chip" data-filter="law" aria-pressed="false">Law &amp; Compliance</button>
-      <button class="chip" data-filter="marketing" aria-pressed="false">Marketing</button>
-      <button class="chip" data-filter="engineering" aria-pressed="false">Engineering &amp; Climate</button>
-      <button class="chip" data-filter="education" aria-pressed="false">Education &amp; L&amp;D</button>
-      <button class="chip" data-filter="finance" aria-pressed="false">Finance &amp; Impact</button>
-      <button class="chip" data-filter="media" aria-pressed="false">Media &amp; Design</button>
+    <div class="coach-filters reveal">
+      <div class="cf-row">
+        <label class="cf-field">
+          <span class="cf-label">Coming from</span>
+          <select id="filterFrom">
+            <option value="all">Any background</option>
+            <option value="corp">Corporate &amp; management</option>
+            <option value="lawfin">Law &amp; finance</option>
+            <option value="creative">Marketing, media &amp; creative</option>
+            <option value="eng">Engineering &amp; technical</option>
+            <option value="edu">Education &amp; public sector</option>
+          </select>
+        </label>
+        <span class="cf-arrow" aria-hidden="true">→</span>
+        <label class="cf-field">
+          <span class="cf-label">Moving toward</span>
+          <select id="filterTo">
+            <option value="all">Anywhere</option>
+            <option value="ai">Work with AI</option>
+            <option value="data">Data &amp; analytics</option>
+            <option value="marketing">AI-era marketing</option>
+            <option value="design">Design &amp; UX</option>
+            <option value="sustainability">Sustainability &amp; climate</option>
+            <option value="ld">Learning &amp; development</option>
+          </select>
+        </label>
+        <button type="button" class="linkbtn cf-reset" id="filterReset" hidden>Reset</button>
+      </div>
+      <div class="cf-challenges" id="filterChallenges" role="group" aria-label="Filter by the roadblock you're facing">
+        <span class="cf-label">Biggest roadblock</span>
+        <button class="chip active" data-ch="all" aria-pressed="true">Any</button>
+        <button class="chip" data-ch="ageBias" aria-pressed="false">40+ age bias</button>
+        <button class="chip" data-ch="gap" aria-pressed="false">Returning after a gap</button>
+        <button class="chip" data-ch="exit" aria-pressed="false">Executive exit / severance</button>
+        <button class="chip" data-ch="salary" aria-pressed="false">Salary negotiation</button>
+        <button class="chip" data-ch="runway" aria-pressed="false">Financial runway</button>
+        <button class="chip" data-ch="nontech" aria-pressed="false">Breaking into tech</button>
+        <button class="chip" data-ch="identity" aria-pressed="false">Identity &amp; confidence</button>
+      </div>
     </div>
     <p class="coach-count" id="coachCount" aria-live="polite">Showing all 8 coaches</p>
 
@@ -402,13 +432,32 @@
     <div class="section-head reveal">
       <span class="eyebrow">What it costs</span>
       <h2>Free to find your coach. You only invest once you've found the right one.</h2>
-      <p>No subscription to browse, and no charge to meet a coach. When you're ready, each coach sets their own transparent pricing — shown upfront, before you book.</p>
+      <p>No subscription to browse, and no charge to meet a coach. You move one low-stakes step at a time — never straight to a big contract.</p>
     </div>
+
+    <ol class="ladder reveal" aria-label="How the commitment grows, one low-stakes step at a time">
+      <li class="rung">
+        <span class="rung-tag">Step 1 · Free</span>
+        <h3>15-min chemistry call</h3>
+        <p>A no-pressure call to see if you click. Meet as many coaches as you like — always free.</p>
+      </li>
+      <li class="rung">
+        <span class="rung-tag">Step 2 · Low-cost taster</span>
+        <h3>A single "Pivot Audit" session</h3>
+        <p>One paid session — a focused strategy audit — so you experience the coaching before any big commitment.</p>
+      </li>
+      <li class="rung">
+        <span class="rung-tag">Step 3 · When you're ready</span>
+        <h3>Ongoing coaching</h3>
+        <p>Continue by the session or as a package, at the coach's transparent rate. Only if the first two steps earned it.</p>
+      </li>
+    </ol>
+
     <div class="offer-grid">
       <div class="reveal">
         <ul class="includes">
           <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>Browse the full roster and book intro calls — <strong>free</strong>.</span></li>
-          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>A <strong>free intro / chemistry call</strong> with any coach before you commit.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>A <strong>free 15-min chemistry call</strong> with any coach, plus low-cost taster sessions before any package.</span></li>
           <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>Transparent pricing</strong> — pay per session or by package, set by each coach.</span></li>
           <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>Scheduling, secure messaging and video — <strong>all in one place</strong>.</span></li>
           <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>Every coach <strong>vetted</strong> for a real transition track record.</span></li>
@@ -517,6 +566,16 @@
   </div>
 </footer>
 
+<!-- ============================================= COACH PROFILE MODAL -->
+<div class="modal-overlay" id="coachProfile" hidden>
+  <div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="profileName">
+    <button type="button" class="modal-close" data-close aria-label="Close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div id="profileBody"><!-- filled by script.js --></div>
+  </div>
+</div>
+
 <!-- ============================================= MATCHMAKER MODAL -->
 <div class="modal-overlay" id="matchmaker" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mmTitle">
@@ -549,11 +608,11 @@
         <p class="mm-sub">No wrong answer — "not sure yet" is a real choice.</p>
         <div class="mm-options" role="radiogroup" aria-label="Where do you want to head?">
           <button type="button" class="mm-opt" data-q="to" data-val="ai">Work with AI — governance, adoption, product</button>
+          <button type="button" class="mm-opt" data-q="to" data-val="data">Data &amp; analytics</button>
           <button type="button" class="mm-opt" data-q="to" data-val="marketing">Marketing in the AI era</button>
-          <button type="button" class="mm-opt" data-q="to" data-val="ai">Data &amp; analytics</button>
-          <button type="button" class="mm-opt" data-q="to" data-val="engineering">Sustainability &amp; climate</button>
-          <button type="button" class="mm-opt" data-q="to" data-val="education">Learning &amp; development</button>
-          <button type="button" class="mm-opt" data-q="to" data-val="law">Compliance &amp; governance</button>
+          <button type="button" class="mm-opt" data-q="to" data-val="design">Design &amp; UX</button>
+          <button type="button" class="mm-opt" data-q="to" data-val="sustainability">Sustainability &amp; climate</button>
+          <button type="button" class="mm-opt" data-q="to" data-val="ld">Learning &amp; development</button>
           <button type="button" class="mm-opt" data-q="to" data-val="all">Honestly, not sure yet</button>
         </div>
       </fieldset>

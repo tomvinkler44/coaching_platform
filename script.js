@@ -62,47 +62,184 @@
     } catch (err) { /* getTotalLength can throw if not yet rendered; harmless */ }
   }
 
-  /* coach roster filtering */
-  var filters = document.getElementById("coachFilters");
-  var grid = document.getElementById("coachGrid");
-  var emptyNote = document.getElementById("coachEmpty");
-  if (filters && grid) {
+  /* ---------------------------------------------------------------- coaches: data, profiles, filtering */
+  (function coaches() {
+    var grid = document.getElementById("coachGrid");
+    if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll(".coach"));
-    var chips = Array.prototype.slice.call(filters.querySelectorAll(".chip"));
-
     var countEl = document.getElementById("coachCount");
+    var emptyNote = document.getElementById("coachEmpty");
+    var fromSel = document.getElementById("filterFrom");
+    var toSel = document.getElementById("filterTo");
+    var chWrap = document.getElementById("filterChallenges");
+    var resetBtn = document.getElementById("filterReset");
     var total = cards.length;
 
-    function applyFilter(val) {
-      var shown = 0;
-      cards.forEach(function (card) {
-        var cats = (card.getAttribute("data-cats") || "").split(/\s+/);
-        var match = val === "all" || cats.indexOf(val) !== -1;
-        card.hidden = !match;
-        if (match) shown++;
-      });
-      if (emptyNote) emptyNote.hidden = shown !== 0;
-      if (countEl) {
-        countEl.textContent = val === "all"
-          ? "Showing all " + total + " coaches"
-          : "Showing " + shown + " coach" + (shown === 1 ? "" : "es");
-      }
-      chips.forEach(function (c) {
-        var on = c.getAttribute("data-filter") === val;
-        c.classList.toggle("active", on);
-        c.setAttribute("aria-pressed", on ? "true" : "false");
-      });
+    var CH = { ageBias: "40+ age bias", gap: "Returning after a gap", exit: "Executive exit / severance", salary: "Salary negotiation", runway: "Financial runway", nontech: "Breaking into tech", identity: "Identity & confidence" };
+
+    // index-aligned with the cards in #coachGrid. Illustrative founding-roster data.
+    var COACHES = [
+      { name: "Marcus Ellington", cred: "ICF PCC · 18 yrs in strategy", loc: "London · GMT", img: "assets/coaches/coach-1.svg",
+        from: "corp", to: "ai", fromLabel: "Management Consulting", toLabel: "AI Transformation", tags: ["Senior pivots", "AI adoption"], challenges: ["salary", "exit", "identity"],
+        bio: "Eighteen years in strategy and management consulting before moving into AI enablement. Marcus helps senior operators reposition hard-won judgment for roles being reshaped by AI.",
+        feed: [{ t: "Reading an AI-era job description", p: "YouTube · 6 min" }, { t: "Why your experience is leverage, not baggage", p: "LinkedIn · 4 min" }],
+        freebie: "The Senior Pivot Playbook", taster: "Pivot Strategy Audit (60 min) — $150",
+        cs: { before: "A consulting director watching the work commoditize as clients adopted AI.", pivot: "Repackaged change-management expertise around AI adoption programs.", after: "Joined a SaaS firm as Head of AI Enablement — a ~22% comp increase." } },
+      { name: "Aisha Rahman", cred: "ICF PCC · 15 yrs in law", loc: "Toronto · ET", img: "assets/coaches/coach-2.svg",
+        from: "lawfin", to: "ai", fromLabel: "Corporate Law", toLabel: "AI Governance & Compliance", tags: ["Law → Tech", "Women in leadership"], challenges: ["ageBias", "salary", "identity"],
+        bio: "Fifteen years as in-house counsel before specializing in AI governance. Aisha helps lawyers and risk professionals turn legal judgment into the human layer over AI systems.",
+        feed: [{ t: "Where lawyers fit in the age of legal AI", p: "YouTube · 8 min" }, { t: "Negotiating your first tech offer", p: "LinkedIn · 5 min" }],
+        freebie: "Law → Tech Transition Guide", taster: "Career-Risk & Compliance Audit (60 min) — $140",
+        cs: { before: "Fifteen years of in-house legal work, quietly fearing legal-AI tools.", pivot: "Reframed her judgment and risk fluency as AI governance.", after: "Became AI Governance Lead at a fintech scale-up." } },
+      { name: "David Okafor", cred: "ICF ACC · 12 yrs in media", loc: "Manchester · GMT", img: "assets/coaches/coach-3.svg",
+        from: "creative", to: "design", fromLabel: "Print Media", toLabel: "UX & Conversation Design", tags: ["Media → Tech", "Content design"], challenges: ["nontech", "runway", "identity"],
+        bio: "A decade in newsrooms before moving into product. David helps writers and media professionals translate narrative craft into UX and conversation design.",
+        feed: [{ t: "From bylines to user flows", p: "YouTube · 7 min" }, { t: "Build a UX portfolio with no UX job (yet)", p: "TikTok · 3 min" }],
+        freebie: "From Bylines to UX: A Portfolio Starter", taster: "Portfolio & Story Audit (60 min) — $110",
+        cs: { before: "A journalist facing another round of newsroom cuts.", pivot: "Translated narrative and interviewing skills into conversation design.", after: "Hired as a UX writer at an AI-assistant startup." } },
+      { name: "Lena Hofmann", cred: "ICF PCC · 16 yrs in marketing", loc: "Berlin · CET", img: "assets/coaches/coach-4.svg",
+        from: "creative", to: "marketing", fromLabel: "Marketing", toLabel: "AI-Powered Marketing", tags: ["Marketing pivots", "Workflow strategy"], challenges: ["identity", "salary", "nontech"],
+        bio: "Sixteen years leading marketing teams before going all-in on AI-enabled growth. Lena helps marketers become the person who redesigns the workflow, not the one it replaces.",
+        feed: [{ t: "The marketer's AI workflow teardown", p: "YouTube · 9 min" }, { t: "3 skills that make you AI-proof in marketing", p: "LinkedIn · 4 min" }],
+        freebie: "The AI-Marketer's Skill Map", taster: "Positioning Audit (60 min) — $130",
+        cs: { before: "A marketing manager watching tools automate her team's output.", pivot: "Became the team's AI workflow owner and upskilled in orchestration.", after: "Promoted to Head of AI-Enabled Growth." } },
+      { name: "Raj Patel", cred: "ICF ACC · 20 yrs in engineering", loc: "Austin · CT", img: "assets/coaches/coach-5.svg",
+        from: "eng", to: "sustainability", fromLabel: "Mechanical Engineering", toLabel: "Renewable Energy", tags: ["Engineering → Climate", "Project management"], challenges: ["runway", "nontech", "ageBias"],
+        bio: "Twenty years in mechanical engineering and plant operations before moving into clean energy. Raj helps technical professionals map their skills onto climate and renewables projects.",
+        feed: [{ t: "Your PM skills already fit renewables", p: "YouTube · 6 min" }, { t: "Breaking into climate without a 'green' CV", p: "LinkedIn · 5 min" }],
+        freebie: "Engineer → Climate Career Map", taster: "Skills-Transfer Audit (60 min) — $120",
+        cs: { before: "Twenty years in automotive, with his plant winding down.", pivot: "Mapped mechanical project skills onto grid and solar projects.", after: "Project Manager at a renewables developer." } },
+      { name: "Sofia Marchetti", cred: "ICF PCC · 13 yrs in education", loc: "Milan · CET", img: "assets/coaches/coach-6.svg",
+        from: "edu", to: "ld", fromLabel: "Teaching", toLabel: "Learning Experience Design", tags: ["Education → L&D", "Reskilling"], challenges: ["gap", "runway", "nontech"],
+        bio: "Thirteen years in the classroom before moving into corporate learning. Sofia helps teachers turn pedagogy into L&D and learning-experience design portfolios.",
+        feed: [{ t: "Teacher skills that companies pay for", p: "YouTube · 7 min" }, { t: "Your first L&D portfolio piece", p: "TikTok · 3 min" }],
+        freebie: "Teacher → L&D Transition Kit", taster: "Pivot Strategy Audit (60 min) — $100",
+        cs: { before: "A burned-out teacher with no corporate network.", pivot: "Built an L&D portfolio from classroom and curriculum craft.", after: "Learning Experience Designer at a health-tech firm." } },
+      { name: "James Whitfield", cred: "ICF MCC · 22 yrs in finance", loc: "Edinburgh · GMT", img: "assets/coaches/coach-7.svg",
+        from: "lawfin", to: "sustainability", fromLabel: "Retail Banking", toLabel: "Sustainability / ESG", tags: ["Finance → Impact", "Second-half careers"], challenges: ["ageBias", "exit", "runway"],
+        bio: "Twenty-two years in retail banking before a second-act move into impact. James specializes in later-career pivots into sustainability and ESG.",
+        feed: [{ t: "The second-act career, planned properly", p: "YouTube · 10 min" }, { t: "Turning a severance into a runway", p: "LinkedIn · 6 min" }],
+        freebie: "The Second-Act Career Guide", taster: "Second-Act Strategy Audit (60 min) — $160",
+        cs: { before: "A bank manager in his 50s, his role steadily automating.", pivot: "Reframed risk and stakeholder skills for ESG programs.", after: "Sustainability Programme Lead at a national retailer." } },
+      { name: "Priya Nair", cred: "ICF PCC · 14 yrs in operations", loc: "Bengaluru · IST", img: "assets/coaches/coach-8.svg",
+        from: "corp", to: "data", fromLabel: "Operations", toLabel: "Data & Analytics", tags: ["Ops → Data", "Career returners"], challenges: ["gap", "identity", "nontech"],
+        bio: "Fourteen years in operations, including a return after a career break. Priya helps operators and returners move into data and analytics roles.",
+        feed: [{ t: "Ops to analytics in 30 days", p: "YouTube · 8 min" }, { t: "Returning to work after a gap", p: "LinkedIn · 5 min" }],
+        freebie: "Ops → Data 30-Day Starter", taster: "Skills-Transfer Audit (60 min) — $110",
+        cs: { before: "An ops manager returning after a three-year career break.", pivot: "Upskilled in analytics and reframed her ops data work.", after: "Data & Insights Lead at a logistics company." } }
+    ];
+
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    var PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+
+    function profileHTML(c) {
+      var first = c.name.split(" ")[0];
+      var tags = c.tags.map(function (t) { return '<span class="tag">' + esc(t) + "</span>"; }).join("");
+      var chTags = c.challenges.map(function (k) { return '<span class="tag tag-ch">' + esc(CH[k]) + "</span>"; }).join("");
+      var feed = c.feed.map(function (f) {
+        return '<a class="feed-item" href="#" onclick="return false;"><span class="feed-play">' + PLAY + "</span><span class=\"feed-meta\"><strong>" + esc(f.t) + "</strong><span>" + esc(f.p) + "</span></span></a>";
+      }).join("");
+      return ''
+        + '<div class="profile">'
+        + '<div class="profile-head">'
+        + '<div class="profile-video"><img class="pv-thumb" src="' + c.img + '" alt="" /><span class="pv-play">' + PLAY + '</span><span class="pv-label">60-sec intro · coming soon</span></div>'
+        + '<div class="profile-id">'
+        + '<span class="eyebrow">Career-change coach</span>'
+        + '<h3 class="mm-q" id="profileName">' + esc(c.name) + "</h3>"
+        + '<p class="cred">' + esc(c.cred) + "</p>"
+        + '<p class="profile-loc">' + esc(c.loc) + "</p>"
+        + '<p class="pivot"><span class="plabel">Guides moves like</span>' + esc(c.fromLabel) + ' <span class="sep">→</span> <span class="to">' + esc(c.toLabel) + "</span></p>"
+        + '<div class="tags">' + tags + chTags + "</div>"
+        + "</div></div>"
+        + '<p class="profile-bio">' + esc(c.bio) + "</p>"
+        + '<div class="profile-ctas">'
+        + '<a class="btn btn-primary" href="mailto:hello@5careers.com?subject=' + encodeURIComponent("Free 15-min chemistry call with " + c.name) + '">Book a free 15-min chemistry call <span class="arrow">→</span></a>'
+        + '<a class="btn btn-ghost" href="mailto:hello@5careers.com?subject=' + encodeURIComponent("Taster session with " + c.name) + '">Or book the taster · ' + esc(c.taster) + "</a>"
+        + "</div>"
+        + '<div class="profile-block"><h4 class="profile-h">See them in action</h4><div class="feed">' + feed + '</div><p class="profile-mini">Sample content — real clips load here once the coach is live.</p></div>'
+        + '<div class="profile-block"><h4 class="profile-h">A transformation they’ve guided</h4>'
+        + '<div class="casestudy"><div class="cs-step"><span class="cs-tag">Before</span><p>' + esc(c.cs.before) + '</p></div><span class="cs-arrow" aria-hidden="true">→</span><div class="cs-step"><span class="cs-tag">The pivot</span><p>' + esc(c.cs.pivot) + '</p></div><span class="cs-arrow" aria-hidden="true">→</span><div class="cs-step cs-after"><span class="cs-tag">After</span><p>' + esc(c.cs.after) + "</p></div></div>"
+        + '<p class="profile-mini">Illustrative example for the founding roster.</p></div>'
+        + '<div class="profile-block freebie-block"><div class="freebie-copy"><h4 class="profile-h">Free resource</h4><p>“' + esc(c.freebie) + "” — a free guide from " + esc(first) + '.</p></div>'
+        + '<form class="freebie-form" novalidate><input type="email" required placeholder="you@email.com" aria-label="Your email" /><button class="btn btn-primary" type="submit">Get the guide <span class="arrow">→</span></button></form>'
+        + '<p class="freebie-done" hidden>✓ On its way — check your inbox. <span class="profile-mini">(Demo: connect an email tool to deliver it for real.)</span></p>'
+        + "</div>"
+        + "</div>";
     }
 
-    filters.addEventListener("click", function (e) {
-      var chip = e.target.closest(".chip");
-      if (!chip) return;
-      applyFilter(chip.getAttribute("data-filter"));
+    var profileBody = document.getElementById("profileBody");
+    function openProfile(i) {
+      var c = COACHES[i]; if (!c || !profileBody) return;
+      profileBody.innerHTML = profileHTML(c);
+      var form = profileBody.querySelector(".freebie-form");
+      if (form) form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var inp = form.querySelector("input");
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((inp.value || "").trim())) { inp.focus(); return; }
+        form.hidden = true;
+        var done = profileBody.querySelector(".freebie-done");
+        if (done) done.hidden = false;
+      });
+      openModal("coachProfile");
+    }
+
+    // enhance each card: video badge, "View profile", clickable
+    cards.forEach(function (card, i) {
+      var av = card.querySelector(".avatar");
+      if (av && av.parentNode) {
+        var w = document.createElement("span"); w.className = "avatar-wrap";
+        av.parentNode.insertBefore(w, av); w.appendChild(av);
+        w.insertAdjacentHTML("beforeend", '<span class="play-badge" aria-hidden="true">' + PLAY + "</span>");
+      }
+      var cta = card.querySelector(".coach-cta");
+      if (cta) {
+        cta.removeAttribute("href"); cta.setAttribute("role", "button"); cta.tabIndex = 0;
+        cta.innerHTML = 'View profile <span class="arrow">→</span>';
+        cta.addEventListener("click", function (e) { e.preventDefault(); openProfile(i); });
+        cta.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openProfile(i); } });
+      }
+      card.classList.add("coach--clickable");
+      card.addEventListener("click", function (e) { if (e.target.closest("a,button")) return; openProfile(i); });
     });
 
-    var reset = document.querySelector("[data-filter-reset]");
-    if (reset) reset.addEventListener("click", function (e) { e.preventDefault(); applyFilter("all"); });
-  }
+    // filtering by from / to / roadblock
+    var fromV = "all", toV = "all", chV = "all";
+    function apply() {
+      var shown = 0;
+      cards.forEach(function (card, i) {
+        var c = COACHES[i];
+        var ok = (fromV === "all" || c.from === fromV) && (toV === "all" || c.to === toV) && (chV === "all" || c.challenges.indexOf(chV) !== -1);
+        card.hidden = !ok; if (ok) shown++;
+      });
+      if (emptyNote) emptyNote.hidden = shown !== 0;
+      if (countEl) countEl.textContent = (fromV === "all" && toV === "all" && chV === "all")
+        ? "Showing all " + total + " coaches"
+        : "Showing " + shown + " coach" + (shown === 1 ? "" : "es");
+      if (resetBtn) resetBtn.hidden = (fromV === "all" && toV === "all" && chV === "all");
+    }
+    if (fromSel) fromSel.addEventListener("change", function () { fromV = fromSel.value; apply(); });
+    if (toSel) toSel.addEventListener("change", function () { toV = toSel.value; apply(); });
+    if (chWrap) chWrap.addEventListener("click", function (e) {
+      var b = e.target.closest(".chip"); if (!b) return;
+      chV = b.getAttribute("data-ch");
+      chWrap.querySelectorAll(".chip").forEach(function (x) { var on = x === b; x.classList.toggle("active", on); x.setAttribute("aria-pressed", on ? "true" : "false"); });
+      apply();
+    });
+    function resetAll() {
+      fromV = toV = chV = "all";
+      if (fromSel) fromSel.value = "all";
+      if (toSel) toSel.value = "all";
+      if (chWrap) chWrap.querySelectorAll(".chip").forEach(function (x) { var on = x.getAttribute("data-ch") === "all"; x.classList.toggle("active", on); x.setAttribute("aria-pressed", on ? "true" : "false"); });
+      apply();
+    }
+    if (resetBtn) resetBtn.addEventListener("click", resetAll);
+    document.querySelectorAll("[data-filter-reset]").forEach(function (el) { el.addEventListener("click", function (e) { e.preventDefault(); resetAll(); }); });
+
+    // expose for the matchmaker
+    window.__COACHES = COACHES;
+    window.__coachCards = cards;
+    window.__openProfile = openProfile;
+  })();
 
   /* ---------------------------------------------------------------- hero rotation */
   (function heroRotation() {
@@ -287,16 +424,26 @@
       stepLabel.hidden = true; navBar.hidden = true;
       progress.forEach(function (p) { p.classList.add("on"); });
       var dest = answers.to || "all";
-      var matches = coachNodes.filter(function (c) {
-        return (c.getAttribute("data-cats") || "").split(/\s+/).indexOf(dest) !== -1;
-      });
-      if (matches.length < 2) matches = coachNodes.slice(0, 3);
-      matches = matches.slice(0, 3);
+      var DATA = window.__COACHES || [];
+      var nodes = window.__coachCards || coachNodes;
+      var idx = [];
+      DATA.forEach(function (c, i) { if (dest !== "all" && c.to === dest) idx.push(i); });
+      for (var k = 0; k < DATA.length && idx.length < 3; k++) { if (idx.indexOf(k) === -1) idx.push(k); }
+      idx = idx.slice(0, 3);
       resultGrid.innerHTML = "";
-      matches.forEach(function (c) {
-        var clone = c.cloneNode(true);
+      idx.forEach(function (i) {
+        var src = nodes[i]; if (!src) return;
+        var clone = src.cloneNode(true);
         clone.classList.remove("reveal");
-        clone.removeAttribute("data-cats");
+        var cta = clone.querySelector(".coach-cta");
+        if (cta) {
+          var name = (DATA[i] && DATA[i].name) || "a coach";
+          var a = document.createElement("a");
+          a.className = "coach-cta";
+          a.href = "mailto:hello@5careers.com?subject=" + encodeURIComponent("Intro call with " + name);
+          a.innerHTML = 'Book a free intro call <span class="arrow">→</span>';
+          cta.parentNode.replaceChild(a, cta);
+        }
         resultGrid.appendChild(clone);
       });
       resultSub.textContent = dest === "all"
