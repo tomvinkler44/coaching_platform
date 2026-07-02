@@ -32,6 +32,7 @@
 .pnav a:hover { background: var(--paper-2); color: var(--ink); }
 .pnav a[aria-current="page"] { background: var(--ink); color: var(--paper-on-dark); font-weight: 600; }
 .pnav-ic { width: 1.2em; text-align: center; opacity: .75; }
+.pnav-svg { width: 16px; height: 16px; flex: none; opacity: .8; }
 .pnav-sep { font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); margin: 1rem .75rem .3rem; }
 .pnav-badge { margin-left: auto; background: var(--dawn-deep); color: #fff; font-size: .7rem; font-weight: 700; border-radius: 100px; padding: .1em .55em; }
 
@@ -48,6 +49,7 @@
   position: sticky; top: 0; z-index: 20;
 }
 .ptop-title { font-family: var(--display); font-size: 1.5rem; font-weight: 560; letter-spacing: -0.01em; }
+.ptop-sub { font-size: .84rem; color: var(--ink-soft); margin-top: .15rem; max-width: 46rem; }
 .btn-sm { padding: .6em 1.1em; font-size: .85rem; }
 
 .pview { padding: clamp(1.2rem, 3vw, 2.4rem); max-width: 1080px; }
@@ -63,7 +65,21 @@
 .pcard h2 + p { color: var(--ink-soft); font-size: .9rem; margin-top: .3rem; }
 .pcard-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
 .pmuted { color: var(--ink-soft); font-size: .9rem; }
-.pmini { font-size: .78rem; color: var(--ink-soft); font-style: italic; }
+.pmini { font-size: .84rem; color: var(--ink-soft); }
+
+/* setup checklist (first-run guidance) */
+.setup-list { list-style: none; padding: 0; margin-top: .9rem; display: grid; gap: .45rem; }
+.setup-list li { display: flex; align-items: center; gap: .6rem; font-size: .93rem; }
+.setup-list .su-done { color: #3f7a55; font-weight: 600; }
+.setup-list .su-todo a { color: var(--dawn-deep); font-weight: 600; }
+.setup-list .su-ic { width: 20px; height: 20px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: .72rem; }
+.setup-list .su-done .su-ic { background: color-mix(in srgb, #4c9a6a 16%, transparent); color: #2e6a47; }
+.setup-list .su-todo .su-ic { border: 1.5px dashed var(--dusk); color: transparent; }
+
+/* welcome modal list */
+.welcome-list { list-style: none; padding: 0; margin-top: 1rem; display: grid; gap: .6rem; }
+.welcome-list li { font-size: .93rem; padding-left: 1.1rem; position: relative; }
+.welcome-list li::before { content: "→"; position: absolute; left: 0; color: var(--dawn-deep); }
 
 /* stat tiles */
 .stat { background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
