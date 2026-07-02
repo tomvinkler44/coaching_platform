@@ -51,6 +51,33 @@ meet → choose, 3 steps) · **Coaches** (filterable roster of 8) · 2026 career
 **Accountability Circles** (community + waitlist) · who it's for/not for · what it
 costs + Right-Fit Guarantee · "Are you a coach?" band · FAQ · final CTA · footer.
 
+## Coach portal (demo)
+
+`portal.html` + `portal.css` + `portal.js` is a fully clickable **front-end
+demo** of the coach portal (linked from the site footer as "Coach portal
+(preview)"). It runs in demo mode: sample data seeded and persisted to
+`localStorage` (key `fc_portal_v1`), with a reset button in the banner. Views:
+
+- **Dashboard** — stats, pending requests, profile-completeness nudge, leads, Circle summary
+- **Bookings** — upcoming / pending / past, accept & decline
+- **Clients & messages** — roster, private notes, on-platform chat with a live
+  **anti-poaching filter** (blocks emails / phone numbers / payment handles)
+- **My Circle** — roster, check-in status, weekly prompt, facilitation guide
+- **Public profile** — bio + the From→To specialty and roadblock tags that power
+  the site's search, with a completeness meter
+- **Offers & pricing** — free chemistry call (required), taster editor, packages,
+  the 75/25 split explainer
+- **Video & content** — 60-sec intro upload slot + "see them in action" feed editor
+- **Lead magnet** — guide editor, lead list, CSV export (works)
+- **Case studies** — Before → Pivot → After builder with a required consent checkbox
+- **Earnings** — balance, monthly chart (hover tooltips + table view), payout history
+- **Settings** — notifications, calendar / Stripe connect placeholders
+
+Everything that needs a real backend is marked `BACKEND:` in the UI and code —
+auth, Cal.com/calendar sync, Stripe Connect payouts, video storage (e.g. Mux),
+email delivery, and a database replacing localStorage. The anti-poaching regex
+must also run server-side in the real build.
+
 ## Tech
 
 Self-contained static site. No build step, no dependencies.
