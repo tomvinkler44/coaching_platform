@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — 5Careers</title>
+<meta name="description" content="5Careers admin: vet coach applications, manage the roster, review message flags, handle rematches and refunds, oversee Circles and revenue." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..560&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="portal.css" />
+<link rel="stylesheet" href="admin.css" />
+</head>
+<body class="portal-body admin-body">
+
+<a class="skip-link" href="#view">Skip to content</a>
+
+<div class="demo-banner" role="status">
+  <span><strong>Practice mode</strong> — every coach, applicant, message and payment here is a pretend example. Nothing you do contacts a real person.</span>
+  <button type="button" class="linkbtn" id="demoReset">Start the examples over</button>
+</div>
+
+<div class="portal">
+  <aside class="psidebar">
+    <a href="#/overview" class="brand" aria-label="Admin home">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M3 24 C 11 24, 12 8, 20 8 C 26 8, 28 14, 29 18" stroke="url(#g)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="3" cy="24" r="3" fill="#6f8a98"/><circle cx="29" cy="18" r="3.4" fill="#d97746"/>
+        <defs><linearGradient id="g" x1="3" y1="24" x2="29" y2="10" gradientUnits="userSpaceOnUse"><stop stop-color="#6f8a98"/><stop offset="1" stop-color="#e6a24a"/></linearGradient></defs>
+      </svg>
+      5Careers <span class="brand-sub">Admin</span>
+    </a>
+
+    <nav class="pnav" aria-label="Admin">
+      <span class="pnav-sep">Today</span>
+      <a href="#/overview" data-route="overview"><svg class="pnav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h5v-6h4v6h5V9.5"/></svg>Overview</a>
+      <a href="#/applications" data-route="applications"><svg class="pnav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="m9 13 2 2 4-4"/></svg>Applications <span class="pnav-badge" id="badgeApps" hidden></span></a>
+      <a href="#/flags" data-route="flags"><svg class="pnav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg>Message flags <span class="pnav-badge" id="badgeFlags" hidden></span></a>
+      <a href="#/rematches" data-route="rematches"><svg class="pnav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Rematch &amp; refunds <span class="pnav-badge" id="badgeRematch" hidden></span></a>
+      <span class="pnav-sep">Manage</span>
+      <a href="#/coaches" data-route="coaches"><svg class="pnav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><path d="M16 3.5a4 4 0 0 1 0 7"/><path d="M22 21v-2a4 4 0 0 0-3-3.85"/></svg>Coaches</a>
+      <a href="#/circles" data-route="circles"><svg class="pnav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/></svg>Circles</a>
+      <span class="pnav-sep">Money &amp; platform</span>
+      <a href="#/revenue" data-route="revenue"><svg class="pnav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>Revenue</a>
+      <a href="#/settings" data-route="settings"><svg class="pnav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.2 2.2M16.9 16.9l2.2 2.2M19.1 4.9l-2.2 2.2M7.1 16.9l-2.2 2.2"/></svg>Platform settings</a>
+    </nav>
+
+    <div class="pcoach">
+      <div class="admin-avatar" aria-hidden="true">T</div>
+      <div><strong>Tom</strong><span>Owner · admin</span></div>
+    </div>
+  </aside>
+
+  <div class="pmain">
+    <header class="ptop">
+      <div>
+        <h1 class="ptop-title" id="viewTitle">Overview</h1>
+        <p class="ptop-sub" id="viewSub"></p>
+      </div>
+      <div class="ptop-actions">
+        <a class="btn btn-ghost btn-sm" href="index.html" target="_blank" rel="noopener" title="Opens in a new tab">Public site ↗</a>
+        <a class="btn btn-ghost btn-sm" href="portal.html" target="_blank" rel="noopener" title="Opens in a new tab">Coach portal ↗</a>
+      </div>
+    </header>
+    <main class="pview" id="view" tabindex="-1"><!-- rendered by admin.js --></main>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="admin.js"></script>
+</body>
+</html>

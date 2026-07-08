@@ -78,6 +78,33 @@ auth, Cal.com/calendar sync, Stripe Connect payouts, video storage (e.g. Mux),
 email delivery, and a database replacing localStorage. The anti-poaching regex
 must also run server-side in the real build.
 
+## Admin panel (demo)
+
+`admin.html` + `admin.css` + `admin.js` is the owner's panel (dark sidebar to
+distinguish it from the coach portal; unlisted — reach it directly at `/admin`).
+Same practice-mode conventions: seeded sample data in `localStorage`
+(key `fc_admin_v1`), plain-language banner, consequence-stating confirms, and
+"(Practice — no real email.)" toasts. Views:
+
+- **Overview** — platform tiles, "needs a decision from you" queue, marketplace health
+- **Applications** — the vetting workflow: three required checks (credential,
+  references, interview); Approve is disabled until all three are ticked, then
+  adds the coach to the roster
+- **Message flags** — the anti-poaching queue with highlighted matches; dismiss /
+  send warning / suspend (suspend also pauses the coach on the roster)
+- **Rematch & refunds** — Right-Fit Guarantee queue; rematch or refund with
+  consequence-stating confirms
+- **Coaches** — full roster: status, profile completeness, bookings, conversion,
+  feature-on-site star, pause/put-live
+- **Circles** — capacity/waitlist per Circle + "open a new Circle" form
+- **Revenue** — client payments vs the platform share (validated single-hue bar
+  chart + open table), split tiles
+- **Platform settings** — the split %, guarantee window, manual-approval and
+  message-filter toggles (guarded confirms)
+
+Backend needed for the real build: auth/roles, database, email, Stripe, and
+server-side enforcement of the message filter and approval gates.
+
 ## Tech
 
 Self-contained static site. No build step, no dependencies.

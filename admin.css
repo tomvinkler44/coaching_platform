@@ -1,0 +1,60 @@
+/* ==========================================================================
+   5Careers — Admin panel. Builds on styles.css + portal.css.
+   Dark sidebar so admin is visually distinct from the coach portal.
+   ========================================================================== */
+
+.admin-body .psidebar { background: var(--ink); border-right-color: rgba(238,241,236,.08); }
+.admin-body .psidebar .brand { color: var(--paper-on-dark); }
+.admin-body .brand-sub { color: var(--dawn); }
+.admin-body .pnav a { color: var(--muted-on-dark); }
+.admin-body .pnav a:hover { background: var(--ink-2); color: var(--paper-on-dark); }
+.admin-body .pnav a[aria-current="page"] { background: var(--dawn-deep); color: #fff; }
+.admin-body .pnav-sep { color: var(--muted-on-dark); opacity: .7; }
+.admin-body .pcoach { border-top-color: rgba(238,241,236,.12); }
+.admin-body .pcoach strong { color: var(--paper-on-dark); }
+.admin-body .pcoach span { color: var(--muted-on-dark); }
+
+.admin-avatar {
+  width: 38px; height: 38px; border-radius: 50%; flex: none;
+  background: linear-gradient(120deg, var(--dawn), var(--dawn-deep));
+  color: #2a1605; font-weight: 700; display: grid; place-items: center; font-size: 1rem;
+}
+
+/* application review card */
+.app-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); padding: 1.3rem; margin-bottom: 1rem; }
+.app-head { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+.app-head img { border-radius: 50%; border: 1px solid var(--line); }
+.app-head .a-name { flex: 1; min-width: 12rem; }
+.app-head .a-name strong { display: block; font-family: var(--display); font-size: 1.1rem; }
+.app-head .a-name span { font-size: .82rem; color: var(--ink-soft); }
+.vet-list { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: .5rem; }
+.vet-list li { display: flex; align-items: center; gap: .6rem; font-size: .92rem; }
+.vet-list input { width: auto; }
+.app-actions { display: flex; gap: .7rem; margin-top: 1.1rem; flex-wrap: wrap; align-items: center; }
+.btn:disabled { opacity: .4; cursor: not-allowed; transform: none !important; box-shadow: none !important; filter: grayscale(.4); }
+.app-note { font-size: .84rem; color: var(--ink-soft); }
+
+/* flag cards */
+.flag-msg {
+  background: var(--paper); border: 1px solid var(--line); border-left: 3px solid #c0492f;
+  border-radius: 10px; padding: .8rem 1rem; font-size: .92rem; margin-top: .7rem;
+}
+.flag-msg mark { background: color-mix(in srgb, #c0492f 22%, transparent); color: #7c2a16; border-radius: 3px; padding: 0 .2em; }
+.flag-meta { font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin-top: .5rem; }
+
+/* roster table tweaks */
+.coach-cell { display: flex; align-items: center; gap: .6rem; }
+.coach-cell img { border-radius: 50%; }
+.coach-cell strong { display: block; font-size: .92rem; }
+.coach-cell span { font-size: .74rem; color: var(--ink-soft); }
+.mini-meter { width: 70px; height: 6px; border-radius: 3px; background: var(--line-soft); overflow: hidden; display: inline-block; vertical-align: middle; }
+.mini-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--dusk), var(--dawn-deep)); }
+.rowbtns { display: flex; gap: .4rem; flex-wrap: wrap; }
+.rowbtns .linkbtn { font-size: .84rem; }
+.feature-star { background: none; border: 0; cursor: pointer; font-size: 1.1rem; color: var(--line); padding: .1rem; line-height: 1; }
+.feature-star.on { color: var(--dawn-deep); }
+
+/* circle cards */
+.circle-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); padding: 1.2rem; }
+.circle-card h3 { font-family: var(--display); font-size: 1.05rem; font-weight: 560; }
+.cap-note { font-size: .82rem; color: var(--ink-soft); margin-top: .3rem; }
