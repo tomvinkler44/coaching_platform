@@ -48,6 +48,34 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
+  /* direction chevrons, generated ON the thread path so they always sit on the
+     curve and point along it — immune to container size and misalignment */
+  (function threadChevrons() {
+    var path = document.getElementById("heroPath");
+    if (!path) return;
+    var svg = path.ownerSVGElement;
+    try {
+      var len = path.getTotalLength();
+      var NS = "http://www.w3.org/2000/svg";
+      var colors = ["#6f8a98", "#93917e", "#c1934f", "#dc8b3f", "#d97746"];
+      for (var k = 0; k < colors.length; k++) {
+        var t = len * (0.16 + 0.62 * k / (colors.length - 1));
+        var pt = path.getPointAtLength(t);
+        var ahead = path.getPointAtLength(Math.min(len, t + 8));
+        var ang = Math.atan2(ahead.y - pt.y, ahead.x - pt.x) * 180 / Math.PI;
+        var g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "thread-chev");
+        g.setAttribute("transform", "translate(" + pt.x.toFixed(1) + " " + pt.y.toFixed(1) + ") rotate(" + ang.toFixed(1) + ")");
+        g.setAttribute("stroke", colors[k]);
+        g.style.animationDelay = (k * 0.22) + "s";
+        var c = document.createElementNS(NS, "path");
+        c.setAttribute("d", "M-5 -6 L4 0 L-5 6");
+        g.appendChild(c);
+        svg.appendChild(g);
+      }
+    } catch (err) { /* path not rendered yet; decorative only */ }
+  })();
+
   /* draw the hero thread on load */
   var heroPath = document.getElementById("heroPath");
   if (heroPath && !reduce) {
@@ -253,11 +281,11 @@
 
     var pairs = [
       { fr: "Operations Manager", ft: "“I can feel my role being hollowed out, one task at a time.”",
-        tr: "AI Adoption Strategist", tt: "With a coach who knows the path you're on." },
+        tr: "AI Adoption Strategist", tt: "With a coach who knows the path you're on.", accent: "#d97746" },
       { fr: "Front-end Developer", ft: "“AI writes the boilerplate now — where does that leave me?”",
-        tr: "AI Product Engineer", tt: "With a coach who's guided this exact move." },
+        tr: "AI Product Engineer", tt: "With a coach who's guided this exact move.", accent: "#4c9a6a" },
       { fr: "Marketing Manager", ft: "“Half my playbook got automated overnight.”",
-        tr: "AI Content Strategist", tt: "With a coach who specializes in this pivot." }
+        tr: "AI Content Strategist", tt: "With a coach who specializes in this pivot.", accent: "#5f7f97" }
     ];
 
     var i = 0, timer = null;
@@ -266,6 +294,7 @@
       var p = pairs[n];
       fromRole.textContent = p.fr; fromTag.textContent = p.ft;
       toRole.textContent = p.tr; toTag.textContent = p.tt;
+      visual.style.setProperty("--pairAccent", p.accent);
       if (dotsWrap) {
         Array.prototype.forEach.call(dotsWrap.children, function (d, idx) {
           d.classList.toggle("active", idx === n);
@@ -278,7 +307,7 @@
       i = (n + pairs.length) % pairs.length;
       if (reduce) { render(i); return; }
       visual.classList.add("swapping");
-      setTimeout(function () { render(i); visual.classList.remove("swapping"); }, 380);
+      setTimeout(function () { render(i); visual.classList.remove("swapping"); }, 460);
     }
 
     // build dots
